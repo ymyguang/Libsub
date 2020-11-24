@@ -1,6 +1,7 @@
 import requests
 import time
 import datetime
+import os
 
 SEAT = "http://tsgic.hebust.edu.cn/ajaxpro/WechatTSG.Web.Seat.BespeakSeat.BespeakSeatList,WechatTSG.Web.ashx"
 HEADERS = {
@@ -11,6 +12,17 @@ HEADERS = {
     'Accept': '*/*',
     'Accept-Encoding': 'gzip, deflate, br'
 }
+
+def delaytime():
+    ACTION_TIME = 223305
+    now = int(datetime.datetime.now().strftime("%H%M%S"))
+    delay = ACTION_TIME - now
+    while delay > 0:
+        print("距抢座时间还有" + str(delay) + "秒")
+        time.sleep(1)
+        delay -= 1
+        os.system("cls")
+
 
 hour = str(21)
 d = int(datetime.datetime.now().weekday())
@@ -30,7 +42,7 @@ HEADERS[
                 + "StrBespeakTime=" + tomorrow_year + "%2f" + tomorrow_month + "%2f" + tomorrow_day + "+" + hour + "%3a30%3a00"
 
 
-
+delaytime()
 
 i = 1
 result = "ww"
