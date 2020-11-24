@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0285ac92-3154-42fc-9af3-7953b96a2942" name="Default Changelist" comment="" />
+    <list default="true" id="0285ac92-3154-42fc-9af3-7953b96a2942" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Include/pollingsub.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Include/pollingsub.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Include/sub.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Include/sub.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +19,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1kcklacS1lkNtEgD2vIfkzS1bxf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,6 +31,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/venv/Include" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -31,29 +41,7 @@
       <recent name="C:\Users\admin.000\Desktop\111\venv\Include" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.seach">
-    <configuration name="1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="111" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/Include" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Include/1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.pollingsub">
     <configuration name="11" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="111" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -68,6 +56,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Include/11.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="campus" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="111" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/Include" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Include/campus.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -142,7 +152,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="time" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="tirm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="111" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -155,7 +165,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Include/time.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Include/tirm.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -166,19 +176,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.sub" />
-      <item itemvalue="Python.1" />
-      <item itemvalue="Python.time" />
       <item itemvalue="Python.pollingsub" />
       <item itemvalue="Python.11" />
       <item itemvalue="Python.seach" />
+      <item itemvalue="Python.campus" />
+      <item itemvalue="Python.tirm" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.seach" />
         <item itemvalue="Python.pollingsub" />
+        <item itemvalue="Python.tirm" />
+        <item itemvalue="Python.campus" />
+        <item itemvalue="Python.seach" />
         <item itemvalue="Python.11" />
-        <item itemvalue="Python.time" />
-        <item itemvalue="Python.1" />
       </list>
     </recent_temporary>
   </component>
@@ -196,11 +206,38 @@
       <workItem from="1606008980309" duration="1324000" />
       <workItem from="1606010406279" duration="5181000" />
       <workItem from="1606017885399" duration="79000" />
+      <workItem from="1606018652359" duration="4593000" />
+      <workItem from="1606030627372" duration="264000" />
+      <workItem from="1606056097427" duration="970000" />
+      <workItem from="1606142459570" duration="184000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="16" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606009841848">
@@ -215,33 +252,43 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="384" y="109" key="EnvironmentVariablesDialog/0.0.1280.720@0.0.1280.720" timestamp="1606009647930" />
-    <state width="1236" height="362" key="GridCell.Tab.0.bottom" timestamp="1606015591202">
+    <state width="1236" height="346" key="GridCell.Tab.0.bottom" timestamp="1606142642700">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="362" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1606015591202" />
-    <state width="1236" height="362" key="GridCell.Tab.0.center" timestamp="1606015591202">
+    <state width="1236" height="346" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1606142642700" />
+    <state width="1236" height="346" key="GridCell.Tab.0.center" timestamp="1606142642700">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="362" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1606015591202" />
-    <state width="1236" height="362" key="GridCell.Tab.0.left" timestamp="1606015591202">
+    <state width="1236" height="346" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1606142642700" />
+    <state width="1236" height="346" key="GridCell.Tab.0.left" timestamp="1606142642700">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="362" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1606015591202" />
-    <state width="1236" height="362" key="GridCell.Tab.0.right" timestamp="1606015591202">
+    <state width="1236" height="346" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1606142642700" />
+    <state width="1236" height="346" key="GridCell.Tab.0.right" timestamp="1606142642700">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="362" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1606015591202" />
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1606011665983">
+    <state width="1236" height="346" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1606142642700" />
+    <state x="456" y="0" key="RollbackChangesDialog" timestamp="1606030650572">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1606011665983" />
+    <state x="456" y="0" key="RollbackChangesDialog/0.0.1280.720@0.0.1280.720" timestamp="1606030650572" />
+    <state x="456" y="206" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606030644139">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="456" y="206" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.720@0.0.1280.720" timestamp="1606030644139" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1606029415188">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1606029415188" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/111$11.coverage" NAME="11 Coverage Results" MODIFIED="1606014587839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$time.coverage" NAME="time Coverage Results" MODIFIED="1606009169007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
-    <SUITE FILE_PATH="coverage/111$sub.coverage" NAME="sub Coverage Results" MODIFIED="1606013388827" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
-    <SUITE FILE_PATH="coverage/111$pollingsub.coverage" NAME="pollingsub Coverage Results" MODIFIED="1606014632824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
+    <SUITE FILE_PATH="coverage/111$sub.coverage" NAME="sub Coverage Results" MODIFIED="1606142511714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
+    <SUITE FILE_PATH="coverage/111$pollingsub.coverage" NAME="pollingsub Coverage Results" MODIFIED="1606142555252" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$seach.coverage" NAME="seach Coverage Results" MODIFIED="1606015555737" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
+    <SUITE FILE_PATH="coverage/111$campus.coverage" NAME="campus Coverage Results" MODIFIED="1606029638514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
+    <SUITE FILE_PATH="coverage/111$tirm.coverage" NAME="tirm Coverage Results" MODIFIED="1606056918055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$1.coverage" NAME="1 Coverage Results" MODIFIED="1606007755696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
   </component>
 </project>

@@ -18,7 +18,10 @@ SEAT = [46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 
         str("09"), 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
         27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]
 
-
+hour = 21
+d = int(datetime.datetime.now().weekday())
+if d == 3:
+    hour = 11
 
 today = datetime.date.today()
 now_time = datetime.datetime.now().strftime('%H')
@@ -30,7 +33,7 @@ tomorrow_day = (today + datetime.timedelta(days=delay)).strftime('%d')
 tomorrow_year = (today + datetime.timedelta(days=delay)).strftime('%Y')
 HEADERS[
     'Cookie'] = "ASP.NET_SessionId=ou4h2ftudtaykra1543wk34s; Reader_barcode=WechatTSG=A3B25858882C96748B640873190B1D4F&WeChatUserCenter=1990752134; UserIdentID=WechatTSG=A3B25858882C96748B640873190B1D4F&WeChatUserCenter=1990752134; UserOpenID=WechatTSG=1008220201108173938977205291; UserName=WechatTSG=%e6%9d%8e%e6%a8%8a; UserType=WechatTSG=0; UserGrade=WechatTSG=; Reader_name=WeChatUserCenter=%e6%9d%8e%e6%a8%8a; " \
-                + "StrBespeakTime=" + tomorrow_year + "%2f" + tomorrow_month + "%2f" + tomorrow_day + "+21%3a30%3a00"
+                + "StrBespeakTime=" + tomorrow_year + "%2f" + tomorrow_month + "%2f" + tomorrow_day + "+" + str(hour) +"%3a30%3a00"
 
 
 
@@ -56,10 +59,10 @@ while 1:
                     isok = 1
                     break
                 cnt += 1
-                time.sleep(0.001)
+                time.sleep(0.1)
     if isok:
         break
     else:
         print("轮询完成，将进行下一轮扫描：\n ***************************************")
 
-i = input()
+ii = input()
