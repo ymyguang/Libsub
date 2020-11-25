@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0285ac92-3154-42fc-9af3-7953b96a2942" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/venv/Include/delaytime.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Include/sub.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Include/sub.py" afterDir="false" />
     </list>
@@ -40,7 +39,7 @@
       <recent name="C:\Users\admin.000\Desktop\111\venv\Include" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.delaytime">
+  <component name="RunManager" selected="Python.sub">
     <configuration name="campus" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="111" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -210,6 +209,10 @@
       <workItem from="1606056097427" duration="970000" />
       <workItem from="1606142459570" duration="184000" />
       <workItem from="1606227645509" duration="1866000" />
+      <workItem from="1606229940189" duration="2000" />
+      <workItem from="1606277711022" duration="227000" />
+      <workItem from="1606277958014" duration="2447000" />
+      <workItem from="1606302091697" duration="697000" />
     </task>
     <servers />
   </component>
@@ -252,22 +255,38 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="384" y="109" key="EnvironmentVariablesDialog/0.0.1280.720@0.0.1280.720" timestamp="1606009647930" />
-    <state width="1236" height="171" key="GridCell.Tab.0.bottom" timestamp="1606229513011">
+    <state width="1236" height="190" key="GridCell.Tab.0.bottom" timestamp="1606302788996">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="171" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1606229513011" />
-    <state width="1236" height="171" key="GridCell.Tab.0.center" timestamp="1606229513011">
+    <state width="1236" height="190" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1606302788996" />
+    <state width="1236" height="190" key="GridCell.Tab.0.center" timestamp="1606302788996">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="171" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1606229513011" />
-    <state width="1236" height="171" key="GridCell.Tab.0.left" timestamp="1606229513011">
+    <state width="1236" height="190" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1606302788996" />
+    <state width="1236" height="190" key="GridCell.Tab.0.left" timestamp="1606302788995">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="171" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1606229513011" />
-    <state width="1236" height="171" key="GridCell.Tab.0.right" timestamp="1606229513011">
+    <state width="1236" height="190" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1606302788995" />
+    <state width="1236" height="190" key="GridCell.Tab.0.right" timestamp="1606302788996">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="171" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1606229513011" />
+    <state width="1236" height="190" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1606302788996" />
+    <state width="1236" height="198" key="GridCell.Tab.1.bottom" timestamp="1606280779933">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1236" height="198" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1606280779933" />
+    <state width="1236" height="198" key="GridCell.Tab.1.center" timestamp="1606280779933">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1236" height="198" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1606280779933" />
+    <state width="1236" height="198" key="GridCell.Tab.1.left" timestamp="1606280779933">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1236" height="198" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1606280779933" />
+    <state width="1236" height="198" key="GridCell.Tab.1.right" timestamp="1606280779933">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1236" height="198" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1606280779933" />
     <state x="456" y="0" key="RollbackChangesDialog" timestamp="1606030650572">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -284,9 +303,9 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/111$11.coverage" NAME="11 Coverage Results" MODIFIED="1606014587839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$time.coverage" NAME="time Coverage Results" MODIFIED="1606009169007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
-    <SUITE FILE_PATH="coverage/111$sub.coverage" NAME="sub Coverage Results" MODIFIED="1606142511714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$pollingsub.coverage" NAME="pollingsub Coverage Results" MODIFIED="1606142555252" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$delaytime.coverage" NAME="delaytime Coverage Results" MODIFIED="1606229139824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
+    <SUITE FILE_PATH="coverage/111$sub.coverage" NAME="sub Coverage Results" MODIFIED="1606302712005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$seach.coverage" NAME="seach Coverage Results" MODIFIED="1606015555737" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$campus.coverage" NAME="campus Coverage Results" MODIFIED="1606029638514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$tirm.coverage" NAME="tirm Coverage Results" MODIFIED="1606056918055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />

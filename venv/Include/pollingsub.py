@@ -2,6 +2,16 @@ import requests
 import time
 import datetime
 
+from privite import privitec
+p = privitec()
+
+
+# 设置参数
+cookie = p.cookie # 等号后，填写cookie
+seat = p.seat     # 等号后，填写座位号
+
+
+
 SITE = "http://tsgic.hebust.edu.cn/ajaxpro/WechatTSG.Web.Seat.BespeakSeat.BespeakSeatList,WechatTSG.Web.ashx"
 HEADERS = {
     'Cookie': '',
@@ -31,9 +41,9 @@ if int(now_time) >= 22:
 tomorrow_month = (today + datetime.timedelta(days=delay)).strftime('%m')
 tomorrow_day = (today + datetime.timedelta(days=delay)).strftime('%d')
 tomorrow_year = (today + datetime.timedelta(days=delay)).strftime('%Y')
+
 HEADERS[
-    'Cookie'] = "ASP.NET_SessionId=ou4h2ftudtaykra1543wk34s; Reader_barcode=WechatTSG=A3B25858882C96748B640873190B1D4F&WeChatUserCenter=1990752134; UserIdentID=WechatTSG=A3B25858882C96748B640873190B1D4F&WeChatUserCenter=1990752134; UserOpenID=WechatTSG=1008220201108173938977205291; UserName=WechatTSG=%e6%9d%8e%e6%a8%8a; UserType=WechatTSG=0; UserGrade=WechatTSG=; Reader_name=WeChatUserCenter=%e6%9d%8e%e6%a8%8a; " \
-                + "StrBespeakTime=" + tomorrow_year + "%2f" + tomorrow_month + "%2f" + tomorrow_day + "+" + str(hour) +"%3a30%3a00"
+        'Cookie'] = cookie + "StrBespeakTime=" + tomorrow_year + "%2f" + tomorrow_month + "%2f" + tomorrow_day + "+" + hour + "%3a30%3a00"
 
 
 
