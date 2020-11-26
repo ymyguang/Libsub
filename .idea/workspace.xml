@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0285ac92-3154-42fc-9af3-7953b96a2942" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Include/BespeakCancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Include/BespeakCancel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Include/pollingsub.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Include/pollingsub.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Include/sub.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Include/sub.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +43,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.sub">
-    <configuration name="campus" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="BespeakCancel" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="111" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -53,7 +56,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Include/campus.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Include/BespeakCancel.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -106,28 +109,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="seach" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="111" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/Include" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Include/seach.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="sub" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="111" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,6 +123,28 @@
       <option name="ADD_SOURCE_ROOTS" value="false" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Include/sub.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="text" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="111" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/Include" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Include/text.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -175,18 +178,18 @@
     <list>
       <item itemvalue="Python.sub" />
       <item itemvalue="Python.pollingsub" />
-      <item itemvalue="Python.seach" />
-      <item itemvalue="Python.campus" />
       <item itemvalue="Python.tirm" />
       <item itemvalue="Python.delaytime" />
+      <item itemvalue="Python.BespeakCancel" />
+      <item itemvalue="Python.text" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.delaytime" />
         <item itemvalue="Python.pollingsub" />
+        <item itemvalue="Python.text" />
+        <item itemvalue="Python.BespeakCancel" />
+        <item itemvalue="Python.delaytime" />
         <item itemvalue="Python.tirm" />
-        <item itemvalue="Python.campus" />
-        <item itemvalue="Python.seach" />
       </list>
     </recent_temporary>
   </component>
@@ -213,6 +216,10 @@
       <workItem from="1606277711022" duration="227000" />
       <workItem from="1606277958014" duration="2447000" />
       <workItem from="1606302091697" duration="697000" />
+      <workItem from="1606314942866" duration="4955000" />
+      <workItem from="1606378020103" duration="7129000" />
+      <workItem from="1606389566927" duration="1193000" />
+      <workItem from="1606390776345" duration="12000" />
     </task>
     <servers />
   </component>
@@ -251,50 +258,54 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="420" y="66" key="#com.intellij.ide.macro.MacrosDialog/0.0.1280.720@0.0.1280.720" timestamp="1606009544138" />
+    <state x="93" y="93" width="1095" height="535" maximized="true" key="DiffContextDialog" timestamp="1606390722702">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="93" y="93" width="1095" height="535" maximized="true" key="DiffContextDialog/0.0.1280.720@0.0.1280.720" timestamp="1606390722702" />
     <state x="384" y="109" key="EnvironmentVariablesDialog" timestamp="1606009647930">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="384" y="109" key="EnvironmentVariablesDialog/0.0.1280.720@0.0.1280.720" timestamp="1606009647930" />
-    <state width="1236" height="190" key="GridCell.Tab.0.bottom" timestamp="1606302788996">
+    <state width="1236" height="219" key="GridCell.Tab.0.bottom" timestamp="1606390760462">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="190" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1606302788996" />
-    <state width="1236" height="190" key="GridCell.Tab.0.center" timestamp="1606302788996">
+    <state width="1236" height="219" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1606390760462" />
+    <state width="1236" height="219" key="GridCell.Tab.0.center" timestamp="1606390760462">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="190" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1606302788996" />
-    <state width="1236" height="190" key="GridCell.Tab.0.left" timestamp="1606302788995">
+    <state width="1236" height="219" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1606390760462" />
+    <state width="1236" height="219" key="GridCell.Tab.0.left" timestamp="1606390760462">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="190" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1606302788995" />
-    <state width="1236" height="190" key="GridCell.Tab.0.right" timestamp="1606302788996">
+    <state width="1236" height="219" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1606390760462" />
+    <state width="1236" height="219" key="GridCell.Tab.0.right" timestamp="1606390760462">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="190" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1606302788996" />
-    <state width="1236" height="198" key="GridCell.Tab.1.bottom" timestamp="1606280779933">
+    <state width="1236" height="219" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1606390760462" />
+    <state width="1236" height="219" key="GridCell.Tab.1.bottom" timestamp="1606390760463">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="198" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1606280779933" />
-    <state width="1236" height="198" key="GridCell.Tab.1.center" timestamp="1606280779933">
+    <state width="1236" height="219" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1606390760463" />
+    <state width="1236" height="219" key="GridCell.Tab.1.center" timestamp="1606390760462">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="198" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1606280779933" />
-    <state width="1236" height="198" key="GridCell.Tab.1.left" timestamp="1606280779933">
+    <state width="1236" height="219" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1606390760462" />
+    <state width="1236" height="219" key="GridCell.Tab.1.left" timestamp="1606390760462">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="198" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1606280779933" />
-    <state width="1236" height="198" key="GridCell.Tab.1.right" timestamp="1606280779933">
+    <state width="1236" height="219" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1606390760462" />
+    <state width="1236" height="219" key="GridCell.Tab.1.right" timestamp="1606390760463">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1236" height="198" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1606280779933" />
+    <state width="1236" height="219" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1606390760463" />
     <state x="456" y="0" key="RollbackChangesDialog" timestamp="1606030650572">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="456" y="0" key="RollbackChangesDialog/0.0.1280.720@0.0.1280.720" timestamp="1606030650572" />
-    <state x="456" y="206" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606030644139">
+    <state x="456" y="206" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606390516566">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="456" y="206" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.720@0.0.1280.720" timestamp="1606030644139" />
+    <state x="456" y="206" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.720@0.0.1280.720" timestamp="1606390516566" />
     <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1606229042225">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -303,9 +314,11 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/111$11.coverage" NAME="11 Coverage Results" MODIFIED="1606014587839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$time.coverage" NAME="time Coverage Results" MODIFIED="1606009169007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
-    <SUITE FILE_PATH="coverage/111$pollingsub.coverage" NAME="pollingsub Coverage Results" MODIFIED="1606142555252" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$delaytime.coverage" NAME="delaytime Coverage Results" MODIFIED="1606229139824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
-    <SUITE FILE_PATH="coverage/111$sub.coverage" NAME="sub Coverage Results" MODIFIED="1606302712005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
+    <SUITE FILE_PATH="coverage/111$pollingsub.coverage" NAME="pollingsub Coverage Results" MODIFIED="1606387372597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
+    <SUITE FILE_PATH="coverage/111$sub.coverage" NAME="sub Coverage Results" MODIFIED="1606390700494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
+    <SUITE FILE_PATH="coverage/111$BespeakCancel.coverage" NAME="BespeakCancel Coverage Results" MODIFIED="1606317367863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
+    <SUITE FILE_PATH="coverage/111$text.coverage" NAME="text Coverage Results" MODIFIED="1606361799197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$seach.coverage" NAME="seach Coverage Results" MODIFIED="1606015555737" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$campus.coverage" NAME="campus Coverage Results" MODIFIED="1606029638514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
     <SUITE FILE_PATH="coverage/111$tirm.coverage" NAME="tirm Coverage Results" MODIFIED="1606056918055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/Include" />
