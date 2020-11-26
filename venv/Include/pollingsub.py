@@ -43,7 +43,7 @@ tomorrow_day = (today + datetime.timedelta(days=delay)).strftime('%d')
 tomorrow_year = (today + datetime.timedelta(days=delay)).strftime('%Y')
 
 HEADERS[
-        'Cookie'] = cookie + "StrBespeakTime=" + tomorrow_year + "%2f" + tomorrow_month + "%2f" + tomorrow_day + "+" + hour + "%3a30%3a00"
+        'Cookie'] = cookie + "StrBespeakTime=" + str(tomorrow_year) + "%2f" + str(tomorrow_month) + "%2f" + str(tomorrow_day) + "+" + str(11) + "%3a30%3a00"
 
 
 

@@ -23,14 +23,14 @@ HEADERS = {
 }
 
 def delaytime():
-    ACTION_TIME = 22 * 3600 + 33 * 60 + 5  # 开放时间戳
+    ACTION_TIME = 22 * 3600 + 31 * 60 + 25  # 开放时间戳
     now = str(datetime.datetime.now().strftime("%H%M%S"))
     now_sec = int(now[0:2]) * 3600 + int(now[2:4]) * 60 + int(now[4:])  # 当前时间戳
     delay = ACTION_TIME - now_sec
     while delay > 0:
         print("距离开放预约时间还有【" + str(int(delay / 3600)) + "小时" + str(int(delay % 3600 / 60)) + "分钟" + str(
             int(delay % 3600 % 60)) + "秒】，请耐心等待")
-        time.sleep(1)
+        time.sleep(0.9)
         delay -= 1
         os.system("cls")
 
@@ -46,7 +46,7 @@ service = input("是否使用服务器模式(y/n):")
 while 1:
     hour = str(21)
     d = int(datetime.datetime.now().weekday())
-    if d == 3:
+    if d == 2:
         hour = str(11)
 
     today = datetime.date.today()
@@ -60,7 +60,6 @@ while 1:
     tomorrow_year = (today + datetime.timedelta(days=delay)).strftime('%Y')
 
 
-
     HEADERS[
         'Cookie'] = cookie + "StrBespeakTime=" + tomorrow_year + "%2f" + tomorrow_month + "%2f" + tomorrow_day + "+" + hour + "%3a30%3a00"
 
@@ -68,7 +67,7 @@ while 1:
 
     i = 1
     result = "ww"
-    while len(result) < 50 or i <= 5000:
+    while len(result) < 50 and  i <= 5000:
         r = requests.post(SEAT, headers=HEADERS, json={"seatNum": seat})  # 读取座位信息/六楼走廊
         if r.text == "\"11\";/*":
             result = '当前位置位置已被预约'
