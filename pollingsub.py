@@ -5,6 +5,7 @@ import datetime
 from privite import privitec
 
 p = privitec()
+URL = "https://sc.ftqq.com/SCU130108Ta4c5f2a9e57c45b7f7224242b46ae1585fbfa4b860f6c.send"
 
 # 设置参数
 cookie = p.cookie  # 等号后，填写cookie
@@ -25,6 +26,13 @@ SEAT = [46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 
         74, 75, 76, 77, str("01"), str("02"), str("03"), str("04"), str("05"), str("06"), str("07"), str("08"),
         str("09"), 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
         27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]
+        
+def feedback(result, str1):
+    params = {
+        "text": result[1:],
+        'desp': str1
+    }
+    requests.get(url=URL, params=params)
 
 hour = 21
 d = int(datetime.datetime.now().weekday())
@@ -42,7 +50,7 @@ tomorrow_year = (today + datetime.timedelta(days=delay)).strftime('%Y')
 
 HEADERS[
     'Cookie'] = cookie + "StrBespeakTime=" + str(tomorrow_year) + "%2f" + str(tomorrow_month) + "%2f" + str(
-    tomorrow_day) + "+" + hour + "%3a30%3a00"
+    tomorrow_day) + "+" + str(hour) + "%3a30%3a00"
 
 cnt = 1
 isok = 0
@@ -70,5 +78,8 @@ while 1:
         break
     else:
         print("轮询完成，将进行下一轮扫描：\n ***************************************")
+        feedback("轮询完成未找到位置，十分钟后将进行下一轮扫描","")
+        time.sleep(10 * 60)
+        
 
-ii = input()
+feedback(result,"")
