@@ -1,13 +1,15 @@
-# from qcloud_cos_v5 import requests
 import datetime
 import requests
+import time
 
 
 # 使用时，删除一下两行，并在下方加入cookies和座位号
 class privitec:
-    cookie = "ASP.NET_SessionId=wnit24qis30eanezqvsqfmu3; Reader_barcode=WechatTSG=A3B25858882C9674246B16B06F7EC204&WeChatUserCenter=1990752135; UserIdentID=WechatTSG=A3B25858882C9674246B16B06F7EC204&WeChatUserCenter=1990752135; UserOpenID=WechatTSG=1008220200902091753255265176; UserName=WechatTSG=%e5%88%98%e5%bd%aa; UserType=WechatTSG=0; UserGrade=WechatTSG=; Reader_name=WeChatUserCenter=%e5%88%98%e5%bd%aa; Hm_lvt_a75caadd7b293bc3cfd97cd8de8e742a=1606400922; Hm_lpvt_a75caadd7b293bc3cfd97cd8de8e742a=1606400922"
-    seat = "101014033"
+    cookie = "ASP.NET_SessionId=e1by510tkh1td31dl5pgzq2h; Reader_barcode=WechatTSG=A3B25858882C967416B2B919872B99AC&WeChatUserCenter=1990752170; UserIdentID=WechatTSG=A3B25858882C967416B2B919872B99AC&WeChatUserCenter=1990752170; UserOpenID=WechatTSG=1008220201127223551561013081; UserName=WechatTSG=%e7%a9%86%e4%bf%8a%e5%87%af; UserType=WechatTSG=0; UserGrade=WechatTSG=; Reader_name=WeChatUserCenter=%e7%a9%86%e4%bf%8a%e5%87%af;"
+    seat = "101014066"  #14是走廊，12是南区（均四楼）
 
+
+start = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 p = privitec()
 # 设置参数
@@ -26,9 +28,10 @@ HEADERS = {
 }
 
 
-def feedback(result):
+def feedback(result, str1):
     params = {
-        "text": result[1:]
+        "text": result[1:],
+        'desp': str1
     }
     requests.get(url=URL, params=params)
 
@@ -61,12 +64,18 @@ def sub():
     i = 1
     HEADERS['Cookie'] = flashcookie(cookie)
     result = "ww"
-    while len(result) < 50 and i < 3000:
-        r = requests.post(SEAT, headers=HEADERS, json={"seatNum": seat})  # 读取座位信息/六楼走廊
+    while len(result) < 50 and i < 500:
+        r = requests.post(SEAT, headers=HEADERS, json={"seatNum": seat})
         result = r.text
-        print(result)
-        i += 1
-    return result
+        if result != """"3对不起当前日期或时间段暂不开放预约!";/*""":
+            break
+        time.sleep(0.1)
+        i = i + 1
+    str1 = '第' + str(i) + "次请求  \n 开始时间：" + str(start) + '   \n 结束时间：' + str(
+        datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    return result, str1
 
 
-feedback(sub())
+def main(x, y):
+    s, ss = sub()
+    feedback(s, ss)  # 推送结果

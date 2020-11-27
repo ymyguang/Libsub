@@ -1,2 +1,3 @@
-/venv/Include/privite.py
-/venv/Include/text.py
+/privite.py
+/__pycache__
+/venv
