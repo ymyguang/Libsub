@@ -2,7 +2,6 @@ import datetime
 import requests
 import time
 
-
 # 使用时，删除一下两行，并在下方加入cookies和座位号
 class privitec:
     cookie = "ASP.NET_SessionId=e1by510tkh1td31dl5pgzq2h; Reader_barcode=WechatTSG=A3B25858882C967416B2B919872B99AC&WeChatUserCenter=1990752170; UserIdentID=WechatTSG=A3B25858882C967416B2B919872B99AC&WeChatUserCenter=1990752170; UserOpenID=WechatTSG=1008220201127223551561013081; UserName=WechatTSG=%e7%a9%86%e4%bf%8a%e5%87%af; UserType=WechatTSG=0; UserGrade=WechatTSG=; Reader_name=WeChatUserCenter=%e7%a9%86%e4%bf%8a%e5%87%af;"
