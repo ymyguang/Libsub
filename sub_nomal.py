@@ -31,7 +31,9 @@ class subclass:
 
         today = datetime.date.today()
         delay = 0
-
+        dd = datetime.datetime.now().strftime("%H")
+        if int(dd) >= 22:
+            delay = 1
         tomorrow_month = (today + datetime.timedelta(days=delay)).strftime('%m')
         tomorrow_day = (today + datetime.timedelta(days=delay)).strftime('%d')
         tomorrow_year = (today + datetime.timedelta(days=delay)).strftime('%Y')

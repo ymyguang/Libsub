@@ -16,22 +16,28 @@ def search():
         print("正在扫描：" + ROOM_NAME[i] + ":" + str(ROOM[i])[0:6])
         r = requests.post(SITE, headers=HEADERS, json={"StrRoomNoParm": str(ROOM[i])[0:6]})  # 读取座位信息
         tar = r.text[1:-4]
-        seatNum = extra(tar)  # 座位号
+        seatNum = if_available(extra(tar))  # 找到最大的座位号
         if seatNum != -1:
             return seatNum
     return seatNum
 
 
-def extra(total):
+def if_available(tar):
+    if len(tar) != 0:
+        return sorted(tar)[-1]
+    return -1
+
+
+def extra(total):  # 本楼层可用的座位号
+    l = []
     tar = total.split("|")  # 提取第一个位置字符串，以：|分割
     for i in tar:
-        splitstr = i.split(",")
+        splitstr = i.split(",")    # 未处理单个座位字符串
         if splitstr[3] == str(0):  # 判断位置是是否为零，是，取座位号，否继续判断
-            seat = int(splitstr[6][-2:])
+            seat = int(splitstr[6][-3:])
             if 46 <= seat <= 77 or 1 <= seat <= 38:
-                return str(splitstr[-1:][0])  # 座位号
-    return -1  # 未找到符合条件的位置
-
+                l.append(str(splitstr[-1:][0]))  # 座位号
+    return l  # 返沪找到的结果
 
 # 返回可用作为
 p = subclass()
@@ -46,6 +52,8 @@ while 1:
     p.seatNum = search()  # 获取座位 -1,未找到！
     if p.seatNum != -1:   # 找到可用位置，
         p.sub(i)
+        print(p.seatNum)
         isbreak = 1       # 退出轮询
         break
-    time.sleep(30)
+    time.sleep(2)
+
