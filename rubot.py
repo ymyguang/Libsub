@@ -1,7 +1,9 @@
 import requests
 import os
+import datetime
 import time
-from sub_nomal import subclass
+
+# from sub_nomal import subclass
 
 seatlist = []
 ROOM = [1010140, 1010050, 1010080, 1010110]  # !
@@ -28,9 +30,7 @@ def extra(total):  # 本楼层可用的座位号
     for i in tar:
         splitstr = i.split(",")  # 未处理单个座位字符串
         if splitstr[3] == str(0):  # 判断位置是是否为零，是，取座位号，否继续判断
-            seat = int(splitstr[6][-3:])
-            if 46 <= seat <= 77 or 1 <= seat <= 38:
-                l.append(str(splitstr[-1:][0]))  # 座位号
+            l.append(str(splitstr[-1:][0]))  # 座位号
 
 
 # 返回可用作为
@@ -41,6 +41,12 @@ def feedback(step):
         "qq": 971209322
     }
     requests.get("https://qmsg.zendee.cn/group/d105a92ecd34dab1427db4dc4936e339", params=params)
+    print(params["msg"])
+#
+def power(seat):
+    if 46 <= seat <= 77 or 1 <= seat <= 38:
+        return "（有电源）*"
+    return "（无电源）"
 
 
 i = 0
@@ -49,9 +55,15 @@ while 1:
     l = []
     search(i)
     str1 = ""
+    cnt = 0
     if len(l) != 0:  # 找到可用位置
+        d = datetime.datetime.now().strftime("%H:%M:%S")
         for beankseat in l:
-            str1 = str1 + "走廊空座:" + ROOM_NAME[ROOM_s.index(str(beankseat)[0:7])] + str(beankseat)[-2:] + "号\n"
-        feedback(str1 + "-------------------------------------")
+            cnt = cnt + 1
+            str1 = str1 + str(beankseat)[-3:] + "号" + power(int(beankseat[-3:])) + "\n"
+        feedback("【" + 
+            ROOM_NAME[i] + "】\n--------------------------\n" + str1 + "--------------------------\n共【" + str(
+                cnt) + "】个\n扫描时间：" + d)
     i = (i + 1) % 4
-    time.sleep(3)
+    # time.sleep(30)
+# feedback(1)

@@ -3,8 +3,8 @@ import os
 import time
 from sub_nomal import subclass
 
-ROOM = [1010140, 1010050, 1010080, 1010110]  # !
-ROOM_NAME = ['六楼走廊', '三楼走廊', '四楼走廊', '五楼走廊']
+ROOM = [1010050, 1010080, 1010110, 1010140]  # !
+ROOM_NAME = ['三楼走廊', '四楼走廊', '五楼走廊', '六楼走廊']
 SITE = "http://tsgic.hebust.edu.cn/ajaxpro/WechatTSG.Web.Seat.BespeakSeat.BespeakSeatList,WechatTSG.Web.ashx"
 HEADERS = {'Cookie': '', 'X-AjaxPro-Method': 'ShowAllSeats',
            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69',
@@ -55,5 +55,5 @@ while 1:
         print(p.seatNum)
         isbreak = 1       # 退出轮询
         break
-    time.sleep(2)
+    time.sleep(1)
 

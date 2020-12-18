@@ -19,21 +19,20 @@ class subclass:
         def feedback(result, str1):
             params = {
                 "text": result,
-                'desp': "当前是第" + str(str1) + "次扫描！"
             }
             requests.get(url="https://sc.ftqq.com/SCU130108Ta4c5f2a9e57c45b7f7224242b46ae1585fbfa4b860f6c.send",
                          params=params)
 
+        delay = 0
         hour = str(21)
         d = int(datetime.datetime.now().weekday())
-        if d == 2:
-            hour = str(11)
-
-        today = datetime.date.today()
-        delay = 0
-        dd = datetime.datetime.now().strftime("%H")
-        if int(dd) >= 22:
+        h = int(datetime.datetime.now().strftime("%H"))  # 仅仅到晚上22点以后，才约到11点
+        if h >= 22:
             delay = 1
+            if d == 2:
+                hour = str(11)
+        today = datetime.date.today()
+
         tomorrow_month = (today + datetime.timedelta(days=delay)).strftime('%m')
         tomorrow_day = (today + datetime.timedelta(days=delay)).strftime('%d')
         tomorrow_year = (today + datetime.timedelta(days=delay)).strftime('%Y')
