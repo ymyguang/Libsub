@@ -26,13 +26,15 @@ SEAT = [46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 
         74, 75, 76, 77, str("01"), str("02"), str("03"), str("04"), str("05"), str("06"), str("07"), str("08"),
         str("09"), 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
         27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]
-        
+
+
 def feedback(result, str1):
     params = {
         "text": result[1:],
         'desp': str1
     }
     requests.get(url=URL, params=params)
+
 
 hour = 21
 d = int(datetime.datetime.now().weekday())
@@ -78,8 +80,7 @@ while 1:
         break
     else:
         print("轮询完成，将进行下一轮扫描：\n ***************************************")
-        feedback("轮询完成未找到位置，十分钟后将进行下一轮扫描","")
+        feedback("轮询完成未找到位置，十分钟后将进行下一轮扫描", "")
         time.sleep(10 * 60)
-        
 
-feedback(result,"")
+feedback(result, "")

@@ -1,3 +1,4 @@
+# 检测图书馆走廊位置机器人
 import requests
 import os
 import datetime
@@ -42,6 +43,8 @@ def feedback(step):
     }
     requests.get("https://qmsg.zendee.cn/group/d105a92ecd34dab1427db4dc4936e339", params=params)
     print(params["msg"])
+
+
 #
 def power(seat):
     if 46 <= seat <= 77 or 1 <= seat <= 38:
@@ -61,9 +64,9 @@ while 1:
         for beankseat in l:
             cnt = cnt + 1
             str1 = str1 + str(beankseat)[-3:] + "号" + power(int(beankseat[-3:])) + "\n"
-        feedback("【" + 
-            ROOM_NAME[i] + "】\n--------------------------\n" + str1 + "--------------------------\n共【" + str(
-                cnt) + "】个\n扫描时间：" + d)
+        feedback("【" +
+                 ROOM_NAME[i] + "】\n--------------------------\n" + str1 + "--------------------------\n共【" + str(
+            cnt) + "】个\n扫描时间：" + d)
     i = (i + 1) % 4
     # time.sleep(30)
 # feedback(1)
