@@ -4,7 +4,6 @@ cookieDic = {
     "my": "ASP.NET_SessionId=wldmrppkfwpiiu2xo5eirup2; Reader_barcode=WechatTSG=A3B25858882C9674246B16B06F7EC204&WeChatUserCenter=1990752135; UserIdentID=WechatTSG=A3B25858882C9674246B16B06F7EC204&WeChatUserCenter=1990752135; UserOpenID=WechatTSG=1008220200902091753255265176; UserName=WechatTSG=%e5%88%98%e5%bd%aa; UserType=WechatTSG=0; UserGrade=WechatTSG=; Reader_name=WeChatUserCenter=%e5%88%98%e5%bd%aa;",
     "other": "ASP.NET_SessionId=wldmrppkfwpiiu2xo5eirup2; Reader_barcode=WechatTSG=A3B25858882C967416B2B919872B99AC&WeChatUserCenter=1990752170; UserIdentID=WechatTSG=A3B25858882C967416B2B919872B99AC&WeChatUserCenter=1990752170; UserOpenID=WechatTSG=1008220201127223551561013081; UserName=WechatTSG=%e7%a9%86%e4%bf%8a%e5%87%af; UserType=WechatTSG=0; UserGrade=WechatTSG=; Reader_name=WeChatUserCenter=%e7%a9%86%e4%bf%8a%e5%87%af;"
 }
-# SEAT = "http://tsgic.hebust.edu.cn/ajaxpro/WechatTSG.Web.Seat.ChooseSeat.ChooseSeatList,WechatTSG.Web.ashx"
 SEAT = "http://tsgic.hebust.edu.cn/ajaxpro/WechatTSG.Web.Seat.BespeakSeat.BespeakSeatList,WechatTSG.Web.ashx"
 HEADERS = {
     # 'Cookie': cookieDic["my"],

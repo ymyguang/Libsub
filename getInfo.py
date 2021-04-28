@@ -1,5 +1,10 @@
 # 展示使用
 import printLog
+import Cancel.BespeakCancel_nomal
+import requests
+from bs4 import BeautifulSoup
+
+SITE = "http://tsgic.hebust.edu.cn/seat/MyCurBespeakSeat.aspx"
 
 floorDict = {
     "二层南区": "101001",
@@ -19,23 +24,32 @@ floorDict = {
 }
 
 
-def getSeatText(strResult, stateCode):
-    # 楼层
-    global floor_text, seat
-    for i in list(floorDict.keys()):
-        if i in strResult:
-            floor_text = i
-    # 座位号
-    if stateCode == "3":
-        end = strResult.find("]座位")
-        seat = strResult[end - 3:end]
-    elif stateCode == "4":
-        end = strResult.find("号，请")
-        seat = strResult[end - 3:end]  # "
-    print(printLog.get_time(), "\033[1;40;46m当前位置信息：[{}] [{}]号\033[0m".format(floor_text, seat))
-    return floor_text, seat
+# myInfo[0]全座位号，[1]文字座位信息
+def getSeatNum():
+    Headers = Cancel.BespeakCancel_nomal.HEADERS
+    myInfo = []
+    requset = requests.post(SITE, headers=Headers)
+    supe = BeautifulSoup(requset.text, "html.parser")
+    num = 0
+
+    for i in supe.find_all("input"):
+        num += 1
+        if num == 7 or num == 9:
+            value = i.get("value")
+            # 是否有位置，若有则加入，若无则返回假
+            if value:
+                myInfo.append(value)
+            else:
+                return False
+    return myInfo
 
 
-def getSeatNum(strResult, stateCode):
-    floor_text, seat = getSeatText(strResult, stateCode)
-    return floorDict[floor_text] + str(seat), floorDict[floor_text]
+# 若有位置，则返回位置代码，若无位置则返回假
+def getSeatText():
+    seat = getSeatNum()
+    if seat:
+        print(printLog.get_time(), "\033[1;40;46m已检测到预约信息；当前位置信息：[{}] [{}]号\033[0m".format(seat[1], seat[0][-3:]))
+        return seat[0]  # 位置代码
+    else:
+        print(printLog.get_time(), "\033[1;40;41m未检测到预约信息\033[0m")
+        return False
