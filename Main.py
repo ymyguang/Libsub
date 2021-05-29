@@ -12,6 +12,8 @@ def findSeat():
     seatNum = -1
     i = 1
     while seatNum == -1:
+        if getInfo.getSeatNum():  # 当前有位置
+            return
         seatNum = search.search()
         print(printLog.get_time(), "当前循环次数：", i)
         i += 1
@@ -25,11 +27,16 @@ def findSeat():
 def refresh(seatNum):
     print(printLog.get_time(), BespeakCancel_nomal.BespeakCancel())
     sub.subscribe(seatNum)
-    getInfo.getSeatText()
-    delay = random.randrange(10, 19)
-    # delay = 5
-    print(printLog.get_time(), "到馆时间将于{}分钟后刷新".format(delay))
-    time.sleep(60 * delay)
+    if getInfo.getSeatText():
+        start = time.time()
+        # 循环等待，防止10分钟内取消无效；
+        for i in range(0, 15):
+            now = time.time()  # 当前时间
+            print(printLog.get_time(), "到馆时间将于{}分钟后刷新".format(10 - i))
+            if now - start >= 60 * 10.1:  # 若开始时间距离现在时间大于10分钟后，取消循环等待，直接退出，进行下一次预约操作
+                break
+            else:
+                time.sleep(60)
 
 
 # 是否在走廊
@@ -67,6 +74,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+    # getInfo.getSeatText()
 # findSeat()
 # Deprecated Code
 
