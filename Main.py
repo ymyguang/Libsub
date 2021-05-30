@@ -4,6 +4,7 @@ from Find import search
 from Sub import sub
 import printLog
 import getInfo
+import requests
 
 
 # 查找走廊可用位置
@@ -19,14 +20,20 @@ def findSeat():
         if seatNum == -1:
             time.sleep(5)
     print(printLog.get_time(), "座位代码:", seatNum)
+    feedback()
     return seatNum
+
+
+def feedback():
+    requests.get(
+        'https://sc.ftqq.com/' + "SCU130108Ta4c5f2a9e57c45b7f7224242b46ae1585fbfa4b860f6c" + ".send?text=找到位置，请查看")
 
 
 # 刷新预约时间
 def refresh(seatNum):
     print(printLog.get_time(), "取消结果：", BespeakCancel_nomal.BespeakCancel())
     sub.subscribe(seatNum)
-    # 循环等待，防止10分钟内取消无效；
+    # 循环等待10分钟，避免取消失败
     if getInfo.getSeatText():
         start = time.time()
         for i in range(0, 15):
@@ -77,29 +84,20 @@ def maintain():
         refresh(seatNum)
 
 
-if __name__ == '__main__':
-    print("You current seat information：", getInfo.getSeatNum())
-    option_row = input("Please select state  \n1.corridor \n2.maintain(You must have seat yet)\n")
-    option = int(option_row)
-    if option == 1:
+def main():
+    currentSeat = getInfo.getSeatNum()
+    print("You current seat information：", currentSeat)
+
+    if currentSeat:  # 有座位
+        option_row = input("Please select state  \n1.corridor \n2.maintain(You must have seat yet)\n")
+        option = int(option_row)
+        if option == 1:
+            corridor()
+        elif option == 2:
+            maintain()
+    else:  # 没有座位
         corridor()
-    elif option == 2:
-        maintain()
 
-    # getInfo.getSeatText()
-# findSeat()
-# Deprecated Code
 
-# 1 位置有效
-# 2 有位置，无效
-# 3 无位置
-
-# 查看当前状态,返回返回内容
-# def init():
-#     # 随机生成一个位置，尽量保证位置可用
-#     seatNum = search.search()
-#     if seatNum == -1:
-#         seatNum = "101012" + str(random.randrange(100, 380))
-#     result = sub.subscribe(seatNum)
-#     print(printLog.get_time(), "服务器返回消息：", result.text, "come from init()")
-#     return result
+if __name__ == '__main__':
+    main()
