@@ -25,8 +25,11 @@ def findSeat():
 
 
 def feedback():
-    requests.get(
-        'https://sc.ftqq.com/' + "SCU130108Ta4c5f2a9e57c45b7f7224242b46ae1585fbfa4b860f6c" + ".send?text=找到位置，请查看")
+    params1 = {
+        "msg": "有位置，请检查",
+        "qq": 2096304869,
+    }
+    requests.get("https://qmsg.zendee.cn/send/d105a92ecd34dab1427db4dc4936e339", params=params1)
 
 
 # 刷新预约时间
