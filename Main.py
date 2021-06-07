@@ -25,20 +25,11 @@ def findSeat():
 
 
 def feedback():
-    stre = "{}".format(getInfo.getSeatText(-1))
-    try:
-        params1 = {
-            "msg": stre,
-            "qq": 2096304869,
-        }
-        requests.get("https://qmsg.zendee.cn/send/d105a92ecd34dab1427db4dc4936e339", params=params1)
-
-    except IOError:
-        URL = "https://sctapi.ftqq.com/SCT33679Td3sATvBjES3VjKQeZgcsbxeB.send"
-        params = {
-            "title": stre,
-        }
-        requests.get(url=URL, params=params)
+    params1 = {
+        "msg": "有位置，请检查",
+        "qq": 2096304869,
+    }
+    requests.get("https://qmsg.zendee.cn/send/d105a92ecd34dab1427db4dc4936e339", params=params1)
 
 
 # 刷新预约时间
