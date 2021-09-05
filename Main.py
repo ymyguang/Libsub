@@ -2,25 +2,28 @@ import time
 from Cancel import BespeakCancel_nomal
 from Find import search
 from Sub import sub
-import printLog
+from tools import printLog
 import getInfo
 import requests
+from tools import clearScreen
 
 
 # 查找走廊可用位置
 def findSeat():
     seatNum = -1
     i = 1
+
     while seatNum == -1:
         if getInfo.getSeatNum():  # 当前有位置
+            print(printLog.get_time(), "当前有位置,将退出座位寻找!")
             return
         seatNum = search.search()
         print(printLog.get_time(), "当前循环次数：", i)
         i += 1
         if seatNum == -1:
             time.sleep(5)
-    print(printLog.get_time(), "座位代码:", seatNum)
-    feedback()
+    print(printLog.get_time(), "找到位置可用位置!->座位代码:", seatNum)
+    # feedback()
     return seatNum
 
 
@@ -33,10 +36,11 @@ def feedback():
 
 
 # 刷新预约时间
+# 方式:取消后等待10分钟返回,进入下一次维持循环
 def refresh(seatNum):
-    print(printLog.get_time(), "取消结果：", BespeakCancel_nomal.BespeakCancel())
+    print(printLog.get_time(), "取消结果:", str(BespeakCancel_nomal.BespeakCancel()))
     sub.subscribe(seatNum)
-    # 循环等待10分钟，避免取消失败
+    # 循环等待10分钟后返回
     if getInfo.getSeatText():
         start = time.time()
         for i in range(0, 15):
@@ -62,7 +66,7 @@ def isOk(floor):
 # 可靠取消
 def Cancel():
     cancel = BespeakCancel_nomal.BespeakCancel()
-    while cancel == """操作失败！""":
+    while cancel == """操作失败!""":
         print(printLog.get_time(), cancel, "5分钟后将再次尝试取消")
         time.sleep(60 * 5)
         cancel = BespeakCancel_nomal.BespeakCancel()
@@ -81,26 +85,85 @@ def corridor():
         refresh(findSeat())  # 未找到位置
 
 
-def maintain():
+def maintain(case, num):
+    global seatNum
     while 1:
-        seatNum = getInfo.getSeatText()
+        # 指定座位代码
+        if case == 2:
+            seatNum = num
+        # 维持当前座位
+        elif case == 3:
+            seatNum = getInfo.getSeatText()
         refresh(seatNum)
 
 
-def main():
+def menu():
     currentSeat = getInfo.getSeatNum()
     print("You current seat information：", currentSeat)
-
-    if currentSeat:  # 有座位
-        option_row = input("Please select state  \n1.corridor \n2.maintain(You must have seat yet)\n")
-        option = int(option_row)
-        if option == 1:
-            corridor()
-        elif option == 2:
-            maintain()
-    else:  # 没有座位
+    option_row = input("Please select state:  \n"
+                       "    1.Find seat in corridor to bespeak. \n"
+                       "    2.Appoint seat number to bespeak.\n"
+                       "    3.Maintain current seat.\n"
+                       "    4.Cancel current seat\n")
+    option = int(option_row)
+    if option == 1:
+        clearScreen.screen_clear()
         corridor()
+    elif option == 2:
+        clearScreen.screen_clear()
+        appointUI()
+    elif option == 3:
+        clearScreen.screen_clear()
+        maintain(case=3, num=000)
+    elif option == 4:
+        global bl
+        cancelResult = BespeakCancel_nomal.BespeakCancel()
+        print(printLog.get_time(), cancelResult)
+        if str(cancelResult).find("成功") == -1 and getInfo.getSeatNum():
+            bl = input("Whether to forcibly cancel current seat?(yea/no)")
+            if bl == "yes":
+                for i in range(0, 10):
+                    time.sleep(60)
+                    print(printLog.get_time(), BespeakCancel_nomal.BespeakCancel())
+
+
+def appointUI():
+    global isCorridor
+    # 默认不在走廊
+    isCorridor = 0
+    num = (input(""" 
+    ###########     FLOOR MAP     ############
+    ******      二楼南区1  二楼北区2     *******
+    *****   三楼南区3  三楼北区4  三楼走廊5  *****
+    *****   四楼南区6  四楼北区7  四楼走廊8  *****
+    *****   五楼南区9  五楼北区10 五楼走廊11 *****
+    *****   六楼南区12 六楼北区13 六楼走廊14 *****
+    ##########################################
+    """
+                 "\nPlease input seat number(The number consist of floor and site):\n"))
+    num = "1010" + "0" * (2 - len(num)) + num
+    if num[-2:] in ["05", "08", "11", "14"]:
+        print("Hit the corridor")
+        isCorridor = 1
+    validSeat = search.extra(search.seatInfo(num), isCorridor)
+    sortValidSeat = sorted(validSeat)
+    print("可用座位号:")
+    cnt = 0
+    for seat in sortValidSeat:
+        cnt += 1
+        if cnt % 8 == 0:
+            last = "号\n"
+        else:
+            last = "号, "
+        print(seat[-3:], end=last)
+    subnum = input("\nSELECT SEAT NUMBER\n")
+    num = num + "0" * (3 - len(subnum)) + subnum
+    print("选中作为号:", num)
+    maintain(case=2, num=num)
 
 
 if __name__ == '__main__':
-    main()
+    menu()
+    # currentSeat = getInfo.getSeatNum()
+    # getInfo.getSeatText()
+    # print("You current seat information:", currentSeat)

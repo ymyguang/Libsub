@@ -1,7 +1,7 @@
 import requests
 import re
 from Sub import sub
-import time
+from tools import printLog
 
 URL = "https://sc.ftqq.com/SCU130108Ta4c5f2a9e57c45b7f7224242b46ae1585fbfa4b860f6c.send"
 SITE = "http://tsgic.hebust.edu.cn/seat/BespeakCancel.aspx"
@@ -16,11 +16,14 @@ HEADERS = {
 
 
 def BespeakCancel():
+    print(printLog.get_time(), "Come in cancel site!")
     # return re.findall(r"title:\"(.+?)\"", requests.get(SITE, headers=HEADERS).text)[0]
-    # time.sleep(10 * 60 + 2)
-    strr = re.findall(r"title:\"(.+?)\"", requests.get(SITE, headers=HEADERS).text)[0]
-    # print(strr)
-    return strr
+    result = re.findall(r"title:\"(.+?)\"", requests.get(SITE, headers=HEADERS).text)[0]
+    cause = re.findall(r"text:\"(.+?)\"", requests.get(SITE, headers=HEADERS).text)[0]
+    if str(result).find("成功") != -1:
+        return result
+    else:
+        return result + "错误原因:" + cause
 
-
-BespeakCancel()
+# BespeakCancel()
+# BespeakCancel()

@@ -1,5 +1,7 @@
 import requests
 import time
+import random
+
 from datetime import datetime
 
 
@@ -18,8 +20,4 @@ def feedback():
     requests.get("https://qmsg.zendee.cn/send/d105a92ecd34dab1427db4dc4936e339", params=params1)
 
 
-if __name__ == '__main__':
-    while 1:
-        feedback()
-        print("The currently time is {}".format(get_time()))
-        time.sleep(3)
+print(random.randrange(0, 2))

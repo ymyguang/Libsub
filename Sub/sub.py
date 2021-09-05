@@ -27,7 +27,9 @@ def feedback(result):
 
 def subscribe(seatNum):
     seatNum = str(seatNum)
-    result = requests.post(SEAT, headers=HEADERS, json={"seatNum": seatNum})  # 读取座位信息/六楼走廊
+    implHEADRES = HEADERS.copy()
+    implHEADRES["X-AjaxPro-Method"] = "submitBespeak"
+    result = requests.post(SEAT, headers=implHEADRES, json={"seatNum": seatNum})  # 读取座位信息/六楼走廊
     return result
 
 

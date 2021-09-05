@@ -1,5 +1,5 @@
 # 展示使用
-import printLog
+from tools import printLog
 import Cancel.BespeakCancel_nomal
 import requests
 from bs4 import BeautifulSoup
