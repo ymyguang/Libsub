@@ -1,6 +1,7 @@
 # 查找带有电源的走廊位置
 import requests
 import random
+import Main
 
 ROOM = [1010050, 1010080, 1010110, 1010140]  # !1010140是走廊
 ROOM_NAME = ['三楼走廊', '四楼走廊', '五楼走廊', '六楼走廊']
@@ -22,9 +23,10 @@ def search():
         print("[INFO]正在扫描:" + ROOM_NAME[i] + ":" + str(ROOM[i])[0:6])
         num = str(ROOM[i])[0:-1]
         tar = seatInfo(num)
-        seatNumArray = extra(tar, 1)  # 走廊找电源
+        seatNumArray = extra(tar, 1)  # 当前楼层的可用位置,0全部位置，1位走廊位置
         if seatNumArray != -1:
             seatNum = seatNumArray[random.randrange(0, len(seatNumArray))]
+            break
         else:
             seatNum = -1
     return seatNum
@@ -36,6 +38,8 @@ def extra(total, corridor=0):
     tar = total.split("|")  # 提取第一个位置字符串，以：|分割
     for i in tar:
         splitstr = i.split(",")  # 未处理单个座位字符串
+        if len(splitstr) < 4:
+            return -1
         if splitstr[3] == str(0):  # 判断位置是是否为零，是，取座位号，否继续判断
             if corridor:
                 seat = int(splitstr[6][-3:])

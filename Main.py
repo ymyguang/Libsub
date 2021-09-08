@@ -23,17 +23,15 @@ def findSeat():
         if seatNum == -1:
             time.sleep(5)
     print(printLog.get_time(), "找到位置可用位置!->座位代码:", seatNum)
-    # feedback()
+    feedback(seatNum)
     return seatNum
 
-
-def feedback():
+def feedback(seatNumber):
     params1 = {
-        "msg": "有位置，请检查",
+        "msg": "有位置，请检查" + " 座位号：seatNumber",
         "qq": 2096304869,
     }
     requests.get("https://qmsg.zendee.cn/send/d105a92ecd34dab1427db4dc4936e339", params=params1)
-
 
 # 刷新预约时间
 # 方式:取消后等待10分钟返回,进入下一次维持循环
@@ -164,6 +162,7 @@ def appointUI():
 
 if __name__ == '__main__':
     menu()
+    # print(findSeat())
     # currentSeat = getInfo.getSeatNum()
     # getInfo.getSeatText()
     # print("You current seat information:", currentSeat)
