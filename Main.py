@@ -9,15 +9,14 @@ from tools import clearScreen
 
 
 # 查找走廊可用位置
-def findSeat():
+def findSeat(place):
     seatNum = -1
     i = 1
-
     while seatNum == -1:
         if getInfo.getSeatNum():  # 当前有位置
             print(printLog.get_time(), "当前有位置,将退出座位寻找!")
             return
-        seatNum = search.search()
+        seatNum = search.search(place)
         print(printLog.get_time(), "当前循环次数：", i)
         i += 1
         if seatNum == -1:
@@ -26,12 +25,14 @@ def findSeat():
     feedback(seatNum)
     return seatNum
 
+
 def feedback(seatNumber):
     params1 = {
         "msg": "有位置，请检查" + " 座位号：seatNumber",
         "qq": 2096304869,
     }
     requests.get("https://qmsg.zendee.cn/send/d105a92ecd34dab1427db4dc4936e339", params=params1)
+
 
 # 刷新预约时间
 # 方式:取消后等待10分钟返回,进入下一次维持循环
@@ -80,7 +81,15 @@ def corridor():
             continue
         elif seatNum:  # 有位置，但是未在走廊，取消当前位置，重新预约
             Cancel()  # 保证取消成功
-        refresh(findSeat())  # 未找到位置
+        refresh(findSeat(1))  # 未找到位置
+
+
+def room():
+    seatNum = getInfo.getSeatText()
+    if seatNum:  # 有位置，但是未在走廊，取消当前位置，重新预约
+        Cancel()  # 保证取消成功
+    refresh(findSeat(2))  # 未找到位置
+    maintain(case=3, num=None)
 
 
 def maintain(case, num):
@@ -99,14 +108,18 @@ def menu():
     currentSeat = getInfo.getSeatNum()
     print("You current seat information：", currentSeat)
     option_row = input("Please select state:  \n"
-                       "    1.Find seat in corridor to bespeak. \n"
+                       "    1.Find seat to bespeak. \n"
                        "    2.Appoint seat number to bespeak.\n"
                        "    3.Maintain current seat.\n"
                        "    4.Cancel current seat\n")
     option = int(option_row)
     if option == 1:
         clearScreen.screen_clear()
-        corridor()
+        num = input("1 -> corridor; 2 -> room\n")
+        if int(num) == 1:
+            corridor()
+        else:
+            room()
     elif option == 2:
         clearScreen.screen_clear()
         appointUI()
@@ -118,8 +131,9 @@ def menu():
         cancelResult = BespeakCancel_nomal.BespeakCancel()
         print(printLog.get_time(), cancelResult)
         if str(cancelResult).find("成功") == -1 and getInfo.getSeatNum():
-            bl = input("Whether to forcibly cancel current seat?(yea/no)")
-            if bl == "yes":
+            bl = input("Whether to forcibly cancel current seat?(yes/no)")
+            if bl == "yes" or bl == 'y':
+                print(printLog.get_time(), "正在进行强制取消，请耐心等待")
                 for i in range(0, 10):
                     time.sleep(60)
                     print(printLog.get_time(), BespeakCancel_nomal.BespeakCancel())
@@ -162,7 +176,4 @@ def appointUI():
 
 if __name__ == '__main__':
     menu()
-    # print(findSeat())
-    # currentSeat = getInfo.getSeatNum()
-    # getInfo.getSeatText()
-    # print("You current seat information:", currentSeat)
+    # print(findSeat(2))

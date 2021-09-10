@@ -19,7 +19,7 @@ def check(number):
 
 # 1990600101, 1991451099
 num = 0
-for i in range(1990706134, 1990752216):
+for i in range(1990752170, 1990752171):
     number = i
     if check(number):
         num += 1
