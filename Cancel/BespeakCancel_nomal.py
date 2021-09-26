@@ -24,6 +24,3 @@ def BespeakCancel():
         return result
     else:
         return result + "错误原因:" + cause
-
-# BespeakCancel()
-# BespeakCancel()

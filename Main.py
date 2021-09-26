@@ -1,3 +1,5 @@
+import os
+import sys
 import time
 from Cancel import BespeakCancel_nomal
 from Find import search
@@ -26,12 +28,19 @@ def findSeat(place):
     return seatNum
 
 
-def feedback(seatNumber):
-    params1 = {
-        "msg": "有位置，请检查" + " 座位号：seatNumber",
-        "qq": 2096304869,
-    }
-    requests.get("https://qmsg.zendee.cn/send/d105a92ecd34dab1427db4dc4936e339", params=params1)
+def feedback(seatNumber, case='M'):
+    if case == 'M':
+        params1 = {
+            "msg": "有位置，请检查" + " 座位号：" + seatNumber,
+            "qq": 2096304869,
+        }
+        requests.get("https://qmsg.zendee.cn/send/d105a92ecd34dab1427db4dc4936e339", params=params1)
+    elif case == 'G':
+        params1 = {
+            "msg": "检测到位置" + " 座位号：" + seatNumber,
+            "qq": 708227196,
+        }
+        requests.get("https://qmsg.zendee.cn/group/d105a92ecd34dab1427db4dc4936e339", params=params1)
 
 
 # 刷新预约时间
@@ -39,13 +48,38 @@ def feedback(seatNumber):
 def refresh(seatNum):
     print(printLog.get_time(), "取消结果:", str(BespeakCancel_nomal.BespeakCancel()))
     sub.subscribe(seatNum)
-    # 循环等待10分钟后返回
+
+    t = str(seatNum) + "\n"
+    if os.path.isfile('info.txt') is False:
+        os.system("type nul > info.txt")
+    file = open('info.txt', 'r+')
+    lines = file.readlines()
+    print(printLog.get_time(), "**************当前日志文件大小：", len(lines), "**************")
+    if len(lines) > 300:
+        file.close()
+        os.system("del info.txt")
+        print(printLog.get_time(), '**************删除文件',"**************")
+        os.system("type nul > info.txt")
+        file = open('info.txt', 'r+')
+        lines = []
+    if len(lines) != 0:
+        if lines[-1] == str(t):
+            print(printLog.get_time(), "卡壳了")
+            feedback("卡壳了，卡壳了！！！")
+            feedback("卡壳了，卡壳了！！！")
+            exit()
+        else:
+            file.write(t)
+    else:
+        file.write(t)
+    file.close()
+
     if getInfo.getSeatText():
         start = time.time()
-        for i in range(0, 15):
+        for i in range(0, 120):
             now = time.time()  # 当前时间
-            print(printLog.get_time(), "到馆时间将于{}分钟后刷新".format(11 - i))
-            if now - start >= 60 * 10.1:  # 若开始时间距离现在时间大于10分钟后，取消循环等待，直接退出，进行下一次预约操作
+            print(printLog.get_time(), "到馆时间将于{}分钟后刷新".format(120 - i))
+            if now - start >= 120 * 30.1:  # 若开始时间距离现在时间大于10分钟后，取消循环等待，直接退出，进行下一次预约操作
                 break
             else:
                 time.sleep(60)
@@ -104,8 +138,11 @@ def maintain(case, num):
         refresh(seatNum)
 
 
-def menu():
+def menu(a):
     currentSeat = getInfo.getSeatNum()
+    if a == "auto":
+        print(printLog, "进入自动寻找模式")
+        corridor()
     print("You current seat information：", currentSeat)
     option_row = input("Please select state:  \n"
                        "    1.Find seat to bespeak. \n"
@@ -175,5 +212,6 @@ def appointUI():
 
 
 if __name__ == '__main__':
-    menu()
+    a = sys.argv[-1]
+    menu(a)
     # print(findSeat(2))

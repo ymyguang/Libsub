@@ -17,7 +17,7 @@ def seatInfo(seatNumber):
 
 def search(place):
     global seatNum
-    CORRIDOR = ['三楼走廊05', '四楼走廊08', '五楼走廊11', '六楼走廊14']
+    CORRIDOR = ['三楼走廊05', '四楼走廊08', '五楼走廊11', '六楼走廊14'] # 五楼走廊11
     Room = ['三楼北区04',
             '三楼南区03', '二楼北区02',
             '四楼南区06', '四楼北区07',

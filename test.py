@@ -1,23 +1,33 @@
-import requests
-import time
-import random
-
-from datetime import datetime
+import os
+import sys
 
 
-def get_time():
-    now = datetime.now()
-    current_time = now.strftime(":【%Y-%m-%d %H:%M:%S】")
-    return str(current_time)
+def tt(t):
+    t = str(t) + "\n"
+    if os.path.isfile('info.txt') is False:
+        os.system("type nul > info.txt")
+    file = open('info.txt', 'r+')
+    lines = file.readlines()
+    print(len(lines))
+    if len(lines) > 3:
+        file.close()
+        os.system("del info.txt")
+        print('删除文件')
+        os.system("type nul > info.txt")
+        file = open('info.txt', 'r+')
+        lines = []
+    if len(lines) != 0:
+        if lines[-1] == str(t):
+            print("卡壳了")
+            exit()
+        else:
+            file.write(t)
+    else:
+        file.write(t)
+    file.close()
 
 
-# 微信提醒，未填报体温
-def feedback():
-    params1 = {
-        "msg": "The currently time is {}".format(get_time()),
-        "qq": 2096304869,
-    }
-    requests.get("https://qmsg.zendee.cn/send/d105a92ecd34dab1427db4dc4936e339", params=params1)
-
-
-print(random.randrange(0, 2))
+if __name__ == '__main__':
+    l = ['1', ';s', '2', '1', '1', '2']
+    for i in l:
+        tt(i)
