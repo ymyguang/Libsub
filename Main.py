@@ -8,8 +8,9 @@ from tools import printLog
 import getInfo
 import requests
 from tools import clearScreen
+import CheckSeat
 
-
+F = None
 # 查找走廊可用位置
 def findSeat(place):
     seatNum = -1
@@ -24,11 +25,11 @@ def findSeat(place):
         if seatNum == -1:
             time.sleep(5)
     print(printLog.get_time(), "找到位置可用位置!->座位代码:", seatNum)
-    feedback(seatNum)
     return seatNum
 
 
 def feedback(text, case='M'):
+    print(printLog.get_time(), "@@@@@@@@@@@@@@@@@COME IN FEEDBACK@@@@@@@@@@@@@@@@@@@@")
     URL = "https://sctapi.ftqq.com/SCT33679Td3sATvBjES3VjKQeZgcsbxeB.send"
 
     if case == 'M':
@@ -38,10 +39,10 @@ def feedback(text, case='M'):
         }
         requests.get("https://qmsg.zendee.cn/send/d105a92ecd34dab1427db4dc4936e339", params=params1)
 
-        params = {
-            "title": text,
-        }
-        requests.get(url=URL, params=params)
+        # params = {
+        #     "title": text,
+        # }
+        # requests.get(url=URL, params=params)
 
     elif case == 'G':
         params1 = {
@@ -54,8 +55,17 @@ def feedback(text, case='M'):
 # 刷新预约时间
 # 方式:取消后等待10分钟返回,进入下一次维持循环
 def refresh(seatNum):
+    global F
     print(printLog.get_time(), "取消结果:", str(BespeakCancel_nomal.BespeakCancel()))
     sub.subscribe(seatNum)
+    if F is None:
+        if getInfo.getSeatNum():
+            index = sub.getCookie().find("WeChatUserCenter=") + len("WeChatUserCenter") + 1
+            studentNUm = sub.getCookie()[index:index + 10]
+            location = str(CheckSeat.check(studentNUm))
+            feedback("已找到位置,位置:" + location)
+            print(printLog.get_time(), "已找到位置,位置:" + location)
+            F = 111
 
     t = str(seatNum) + "\n"
     if os.path.isfile('info.txt') is False:
@@ -72,10 +82,7 @@ def refresh(seatNum):
         lines = []
     if len(lines) != 0:
         if lines[-1] == str(t):
-            print(printLog.get_time(), "卡壳了")
-            feedback("卡壳了，卡壳了！！！")
-            feedback("卡壳了，卡壳了！！！")
-            exit()
+            print(printLog.get_time(), "重复命中")
         else:
             file.write(t)
     else:
@@ -83,14 +90,15 @@ def refresh(seatNum):
     file.close()
 
     if getInfo.getSeatText():
-        start = time.time()
-        for i in range(0, 120):
-            now = time.time()  # 当前时间
-            print(printLog.get_time(), "到馆时间将于{}分钟后刷新".format(120 - i))
-            if now - start >= 120 * 30.1:  # 若开始时间距离现在时间大于10分钟后，取消循环等待，直接退出，进行下一次预约操作
-                break
-            else:
-                time.sleep(60)
+        time.sleep(10)
+        # start = time.time()
+        # for i in range(0, 120):
+        #     now = time.time()  # 当前时间
+        #     print(printLog.get_time(), "到馆时间将于{}分钟后刷新".format(120 - i))
+        #     if now - start >= 120 * 30.1:  # 若开始时间距离现在时间大于10分钟后，取消循环等待，直接退出，进行下一次预约操作
+        #         break
+        #     else:
+        #         time.sleep(60)
 
 
 # 是否在走廊

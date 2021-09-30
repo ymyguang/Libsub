@@ -27,7 +27,6 @@ def Find(name):
                 if info == '预约':
                     print(printLog.get_time(), '【通知手机端】:', people.get(name), "->[已预约]", result)
                     Main.feedback(name + str(people.get(name)) + "->[已预约]" + str(result), 'M')
-                    Main.feedback(name + str(people.get(name)) + "->[已预约]" + str(result), 'G')
                     first = result
                 # 插入数据库并作标记：是否是预约开始时间：0|1
 
@@ -35,7 +34,6 @@ def Find(name):
                 if info == '选座':
                     print(printLog.get_time(), '【通知手机端】:', people.get(name), "->[已进馆]", result)
                     Main.feedback(name + str(people.get(name)) + "->[已进馆]" + str(result), 'M')
-                    Main.feedback(name + str(people.get(name)) + "->[已进馆]" + str(result), 'G')
                     second = result
                 # 插入数据库并作标记：是否是进馆开始时间：0|1
 
@@ -46,7 +44,6 @@ def Find(name):
             if first is not None:
                 print(printLog.get_time(), '【通知手机端】' + ":已离开图书馆")
                 Main.feedback(str(name + people.get(name)) + "->[已离开]图书馆", "M")
-                Main.feedback(str(name + people.get(name)) + "->[已离开]图书馆", "G")
 
                 # 此时插入数据库并作标记：是否是离开图书馆时间：0|1
                 first = None
