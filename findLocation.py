@@ -1,11 +1,6 @@
 import time
 import CheckSeat
-import Main
-from tools import printLog
-
-# def diy():
-#     for i in range(0, len(keys)):
-#         _thread.start_new_thread(Find, (keys[i],))
+from tools import printLog, feedback
 
 people = {
     'xjj': 1891103126,
@@ -15,10 +10,9 @@ keys = list(people.keys())
 
 
 def Find(name):
-    global first
-    global second
     first = None
     second = None
+    s = None
     i = 1
     while 1:
         result = CheckSeat.check(people.get(name))
@@ -27,30 +21,33 @@ def Find(name):
             if first != result:
                 if info == '预约':
                     print(printLog.get_time(), '【通知手机端】:', people.get(name), "->[已预约]", result)
-                    Main.feedback(printLog.get_time() + name + str(people.get(name)) + "->[已预约]" + str(result), 'M')
+                    feedback.feedback(printLog.get_time() + name + str(people.get(name)) + "->[已预约]" + str(result), 'M')
                     first = result
+
                 # 插入数据库并作标记：是否是预约开始时间：0|1
 
             if second != result:
                 if info == '选座':
                     print(printLog.get_time(), '【通知手机端】:', people.get(name), "->[已进馆]", result)
-                    Main.feedback(printLog.get_time() + name + str(people.get(name)) + "->[已进馆]" + str(result), 'M')
+                    feedback.feedback(printLog.get_time() + name + str(people.get(name)) + "->[已进馆]" + str(result), 'M')
                     second = result
                 # 插入数据库并作标记：是否是进馆开始时间：0|1
             i += 1
-            if i % 200 == 0:
+            if i % 100 == 0:
                 print(printLog.get_time(), name + "->" + str(result))
             # 插入数据库
         else:
-            print(printLog.get_time(), "未在图书馆")
-            if first is not None:
+            i += 1
+            if i % 100 == 0 or s is None:
+                print(printLog.get_time(), "未在图书馆")
+            s = 1
+            if first is not None or second is not None:
                 print(printLog.get_time(), '【通知手机端】' + ":已离开图书馆")
-                Main.feedback(printLog.get_time() + name + str(people.get(name)) + "->[已离开]图书馆", "M")
-
+                feedback.feedback(printLog.get_time() + name + str(people.get(name)) + "->[已离开]图书馆", "M")
                 # 此时插入数据库并作标记：是否是离开图书馆时间：0|1
                 first = None
                 second = None
-        time.sleep(10)
+        time.sleep(5)
 
 
 if __name__ == '__main__':

@@ -7,8 +7,7 @@ cookieDic = {
 }
 SEAT = "http://tsgic.hebust.edu.cn/ajaxpro/WechatTSG.Web.Seat.BespeakSeat.BespeakSeatList,WechatTSG.Web.ashx"
 HEADERS = {
-    # 'Cookie': cookieDic["my"],
-    'Cookie': cookieDic["other"],
+    'Cookie': cookieDic["my"],
     # 'X-AjaxPro-Method': 'submitChoose',
     'X-AjaxPro-Method': 'submitBespeak',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69',
@@ -18,16 +17,7 @@ HEADERS = {
 }
 
 
-def feedback(result):
-    params = {
-        "text": result,
-    }
-    requests.get(url="https://sc.ftqq.com/SCU130108Ta4c5f2a9e57c45b7f7224242b46ae1585fbfa4b860f6c.send",
-                 params=params)
-
-
 def subscribe(seatNum):
-
     seatNum = str(seatNum)
     implHEADRES = HEADERS.copy()
     implHEADRES["X-AjaxPro-Method"] = "submitBespeak"

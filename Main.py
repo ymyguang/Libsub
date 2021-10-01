@@ -6,11 +6,17 @@ from Find import search
 from Sub import sub
 from tools import printLog
 import getInfo
-import requests
+
 from tools import clearScreen
+from tools import feedback
+
 import CheckSeat
 
 F = None
+start = 0
+i_refresh = 1
+
+
 # 查找走廊可用位置
 def findSeat(place):
     seatNum = -1
@@ -28,52 +34,51 @@ def findSeat(place):
     return seatNum
 
 
-def feedback(text, case='M'):
-    print(printLog.get_time(), "@@@@@@@@@@@@@@@@@COME IN FEEDBACK@@@@@@@@@@@@@@@@@@@@")
-    URL = "https://sctapi.ftqq.com/SCT33679Td3sATvBjES3VjKQeZgcsbxeB.send"
-
-    if case == 'M':
-        params1 = {
-            "msg": text,
-            "qq": 2096304869,
-        }
-        requests.get("https://qmsg.zendee.cn/send/d105a92ecd34dab1427db4dc4936e339", params=params1)
-
-        # params = {
-        #     "title": text,
-        # }
-        # requests.get(url=URL, params=params)
-
-    elif case == 'G':
-        params1 = {
-            "msg": text,
-            "qq": 708227196,
-        }
-    requests.get("https://qmsg.zendee.cn/group/d105a92ecd34dab1427db4dc4936e339", params=params1)
-
-
 # 刷新预约时间
-# 方式:取消后等待10分钟返回,进入下一次维持循环
+# 方式:取消后等待130分钟返回,进入下一次维持循环
 def refresh(seatNum):
     global F
-    print(printLog.get_time(), "取消结果:", str(BespeakCancel_nomal.BespeakCancel()))
+    global i_refresh
+    global start
+    
+# 短时间内预约失败，通知手机端，并结束程序
+    i_refresh += 1
+    end = time.time()
+    if end - start < 120 and i_refresh > 3:
+        feedback.feedback("预约位置产生错误，请手动查看")
+        exit()
+    elif end - start > 120:
+        i_refresh = 0
+        
+# 当前有位置，但是预约失败，则通知手机
+    flag = None
+    if getInfo.getSeatNum():
+        flag = 1
+    cancelRes = str(BespeakCancel_nomal.BespeakCancel())
+    print(printLog.get_time(), "取消结果:", str(cancelRes))
+    if flag and cancelRes.find("成功") == -1:
+        feedback.feedback(seatNum + "取消预约失败，请手动查看")
+        return
     sub.subscribe(seatNum)
+    
+# 获取学号信息，并通知手机一次
     if F is None:
         if getInfo.getSeatNum():
             index = sub.getCookie().find("WeChatUserCenter=") + len("WeChatUserCenter") + 1
             studentNUm = sub.getCookie()[index:index + 10]
             location = str(CheckSeat.check(studentNUm))
-            feedback("已找到位置,位置:" + location)
+            feedback.feedback("已找到位置,位置:" + location)
             print(printLog.get_time(), "已找到位置,位置:" + location)
             F = 111
 
+# 记录扫描到的文件信息，最大容量100
     t = str(seatNum) + "\n"
     if os.path.isfile('info.txt') is False:
         os.system("type nul > info.txt")
     file = open('info.txt', 'r+')
     lines = file.readlines()
     print(printLog.get_time(), "**************当前日志文件大小：", len(lines), "**************")
-    if len(lines) > 300:
+    if len(lines) > 100:
         file.close()
         os.system("del info.txt")
         print(printLog.get_time(), '**************删除文件', "**************")
@@ -89,16 +94,13 @@ def refresh(seatNum):
         file.write(t)
     file.close()
 
+    # 等待刷新
     if getInfo.getSeatText():
-        time.sleep(10)
-        # start = time.time()
-        # for i in range(0, 120):
-        #     now = time.time()  # 当前时间
-        #     print(printLog.get_time(), "到馆时间将于{}分钟后刷新".format(120 - i))
-        #     if now - start >= 120 * 30.1:  # 若开始时间距离现在时间大于10分钟后，取消循环等待，直接退出，进行下一次预约操作
-        #         break
-        #     else:
-        #         time.sleep(60)
+        for i in range(0, 130):
+            print(printLog, '还剩{}分钟后刷新'.format(130 - i))
+            time.sleep(60)
+
+    start = time.time()
 
 
 # 是否在走廊
