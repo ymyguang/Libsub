@@ -13,8 +13,8 @@ from tools import feedback
 import CheckSeat
 
 F = None
-start = 0
-i_refresh = 1
+oldTime = 0
+i_refresh = 0
 
 
 # 查找走廊可用位置
@@ -39,18 +39,19 @@ def findSeat(place):
 def refresh(seatNum):
     global F
     global i_refresh
-    global start
-    
-# 短时间内预约失败，通知手机端，并结束程序
+    global oldTime
+
+    # 短时间内预约失败，通知手机端，并结束程序
     i_refresh += 1
-    end = time.time()
-    if end - start < 120 and i_refresh > 3:
-        feedback.feedback("预约位置产生错误，请手动查看")
-        exit()
-    elif end - start > 120:
+    newTime = time.time()
+    print(printLog.get_time(), "当前i:{}, 上次调用时间：{}，当前时间：{}，时间差：{}".format(i_refresh, newTime, oldTime, newTime - oldTime))
+    if newTime - oldTime < 120 and i_refresh > 5:
+        feedback.feedback("预约位置功能异常，请手动查看", wx=1)
+    elif newTime - oldTime > 120:
+        print(printLog.get_time(), "标记为已置零")
         i_refresh = 0
-        
-# 当前有位置，但是预约失败，则通知手机
+
+    # 当前有位置，但是预约失败，则通知手机
     flag = None
     if getInfo.getSeatNum():
         flag = 1
@@ -60,8 +61,8 @@ def refresh(seatNum):
         feedback.feedback(seatNum + "取消预约失败，请手动查看")
         return
     sub.subscribe(seatNum)
-    
-# 获取学号信息，并通知手机一次
+
+    # 获取学号信息，并通知手机一次
     if F is None:
         if getInfo.getSeatNum():
             index = sub.getCookie().find("WeChatUserCenter=") + len("WeChatUserCenter") + 1
@@ -70,37 +71,14 @@ def refresh(seatNum):
             feedback.feedback("已找到位置,位置:" + location)
             print(printLog.get_time(), "已找到位置,位置:" + location)
             F = 111
-
-# 记录扫描到的文件信息，最大容量100
-    t = str(seatNum) + "\n"
-    if os.path.isfile('info.txt') is False:
-        os.system("type nul > info.txt")
-    file = open('info.txt', 'r+')
-    lines = file.readlines()
-    print(printLog.get_time(), "**************当前日志文件大小：", len(lines), "**************")
-    if len(lines) > 100:
-        file.close()
-        os.system("del info.txt")
-        print(printLog.get_time(), '**************删除文件', "**************")
-        os.system("type nul > info.txt")
-        file = open('info.txt', 'r+')
-        lines = []
-    if len(lines) != 0:
-        if lines[-1] == str(t):
-            print(printLog.get_time(), "重复命中")
-        else:
-            file.write(t)
-    else:
-        file.write(t)
-    file.close()
-
     # 等待刷新
+
     if getInfo.getSeatText():
         for i in range(0, 130):
-            print(printLog, '还剩{}分钟后刷新'.format(130 - i))
+            print(printLog.get_time(), '还剩{}分钟后刷新'.format(130 - i))
             time.sleep(60)
 
-    start = time.time()
+    oldTime = time.time()
 
 
 # 是否在走廊

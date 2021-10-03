@@ -3,7 +3,7 @@ import CheckSeat
 from tools import printLog, feedback
 
 people = {
-    'xjj': 1891103126,
+    '陶雨晴': 1891103126,
     'my': 1990752135
 }
 keys = list(people.keys())
@@ -52,4 +52,4 @@ def Find(name):
 
 if __name__ == '__main__':
     # diy()
-    Find('xjj')
+    Find('陶雨晴')
