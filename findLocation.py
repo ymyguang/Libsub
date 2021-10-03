@@ -20,16 +20,18 @@ def Find(name):
             info = str(result[2][0:2])
             if first != result:
                 if info == '预约':
-                    print(printLog.get_time(), '【通知手机端】:', people.get(name), "->[已预约]", result)
-                    feedback.feedback(printLog.get_time() + name + str(people.get(name)) + "->[已预约]" + str(result), 'M')
+                    print(printLog.get_time(),"上次状态(F):{}\n当前状态:{}".format(second, result[0][-5:-1] + "," + result[1][0:4] + "," + result[2]))
+                    print(printLog.get_time(), name, "->[已预约]", result)
+                    feedback.feedback(str(printLog.get_time())[11:-6] + "," + name + "->[已预约] " + result[0][-5:-1] + "," + result[1][0:4] + "," + result[2], 'M')
                     first = result
 
                 # 插入数据库并作标记：是否是预约开始时间：0|1
 
             if second != result:
                 if info == '选座':
-                    print(printLog.get_time(), '【通知手机端】:', people.get(name), "->[已进馆]", result)
-                    feedback.feedback(printLog.get_time() + name + str(people.get(name)) + "->[已进馆]" + str(result), 'M')
+                    print(printLog.get_time(),"上次状态(S):{}\n当前result:{}".format(second, result[0][-5:-1] + "," + result[1][0:4] + "," + result[2]))
+                    print(printLog.get_time(), name, "->[已进馆]", result)
+                    feedback.feedback(str(printLog.get_time())[11:-6] + "," + name + "->[已进馆] " + result[0][-5:-1] + "," + result[1][0:4] + "," + result[2], 'M')
                     second = result
                 # 插入数据库并作标记：是否是进馆开始时间：0|1
             i += 1
@@ -42,8 +44,8 @@ def Find(name):
                 print(printLog.get_time(), "未在图书馆")
             s = 1
             if first is not None or second is not None:
-                print(printLog.get_time(), '【通知手机端】' + ":已离开图书馆")
-                feedback.feedback(printLog.get_time() + name + str(people.get(name)) + "->[已离开]图书馆", "M")
+                print(printLog.get_time() + ":已离开图书馆")
+                feedback.feedback(printLog.get_time() + name + "->[已离开]图书馆", "M")
                 # 此时插入数据库并作标记：是否是离开图书馆时间：0|1
                 first = None
                 second = None
