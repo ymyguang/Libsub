@@ -16,8 +16,6 @@ HEADERS = {
 
 
 def BespeakCancel():
-    print(printLog.get_time(), "Come in cancel site!")
-    # return re.findall(r"title:\"(.+?)\"", requests.get(SITE, headers=HEADERS).text)[0]
     result = re.findall(r"title:\"(.+?)\"", requests.get(SITE, headers=HEADERS).text)[0]
     cause = re.findall(r"text:\"(.+?)\"", requests.get(SITE, headers=HEADERS).text)[0]
     if str(result).find("成功") != -1:

@@ -20,18 +20,30 @@ def Find(name):
             info = str(result[2][0:2])
             if first != result:
                 if info == '预约':
-                    print(printLog.get_time(),"上次状态(F):{}\n当前状态:{}".format(second, result[0][-5:-1] + "," + result[1][0:4] + "," + result[2]))
-                    print(printLog.get_time(), name, "->[已预约]", result)
-                    feedback.feedback(str(printLog.get_time())[11:-6] + "," + name + "->[已预约] " + result[0][-5:-1] + "," + result[1][0:4] + "," + result[2], 'M')
+                    print(printLog.get_time('Find'), "上次状态(F):{}\n{} 当前状态:{}".format(first, printLog.get_time('Find'),
+                                                                                    result[0][-5:-1] + "," + result[1][
+                                                                                                             0:4] + "," +
+                                                                                    result[2]))
+                    print(printLog.get_time('Find'), name, "->[已预约]", result)
+                    feedback.feedback(
+                        str(printLog.get_time())[11:-6] + "," + name + "->[已预约] " + result[0][-5:-1] + "," + result[1][
+                                                                                                             0:4] + "," +
+                        result[2], 'M')
                     first = result
 
                 # 插入数据库并作标记：是否是预约开始时间：0|1
 
             if second != result:
                 if info == '选座':
-                    print(printLog.get_time(),"上次状态(S):{}\n当前result:{}".format(second, result[0][-5:-1] + "," + result[1][0:4] + "," + result[2]))
-                    print(printLog.get_time(), name, "->[已进馆]", result)
-                    feedback.feedback(str(printLog.get_time())[11:-6] + "," + name + "->[已进馆] " + result[0][-5:-1] + "," + result[1][0:4] + "," + result[2], 'M')
+                    print(printLog.get_time('Find'), "上次状态(S):{}\n{} 当前状态:{}".format(second, printLog.get_time('Find'),
+                                                                                  result[0][-5:-1] + "," + result[1][
+                                                                                                           0:4] + "," +
+                                                                                  result[2]))
+                    print(printLog.get_time('Find'), name, "->[已进馆]", result)
+                    feedback.feedback(
+                        str(printLog.get_time())[11:-6] + "," + name + "->[已进馆] " + result[0][-5:-1] + "," + result[1][
+                                                                                                             0:4] + "," +
+                        result[2], 'M')
                     second = result
                 # 插入数据库并作标记：是否是进馆开始时间：0|1
             i += 1

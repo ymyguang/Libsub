@@ -30,7 +30,7 @@ def comment():
         result = check(number)
         if result:
             num += 1
-            strr = printLog.get_time() + "第{}位:{} -> {}".format(("0" * (2 - len(str(num))) + str(num)), devi[0], result)
+            strr = printLog.get_time("comment") + "第{}位:{} -> {}".format(("0" * (2 - len(str(num))) + str(num)), devi[0], result)
             print(strr)
             # Main.feedback(strr, case='G')
     print("扫描完成")

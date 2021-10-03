@@ -3,10 +3,8 @@ import requests
 
 
 def feedback(text, case='M', wx=0):
-    print(printLog.get_time(), "@@@@@@@@@@@@@@@@@COME IN FEEDBACK@@@@@@@@@@@@@@@@@@@@")
-    print(printLog.get_time(), "【", text + ' 】')
-    print(printLog.get_time(), "@@@@@@@@@@@@@@@@@COME OUT FEEDBACK@@@@@@@@@@@@@@@@@@@@")
-    #return
+    print(printLog.get_time("Feedback"), "->【", text + ' 】')
+    # return
     URL = "https://sctapi.ftqq.com/SCT33679Td3sATvBjES3VjKQeZgcsbxeB.send"
 
     if case == 'M':

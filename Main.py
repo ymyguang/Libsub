@@ -6,7 +6,6 @@ from Find import search
 from Sub import sub
 from tools import printLog
 import getInfo
-
 from tools import clearScreen
 from tools import feedback
 
@@ -23,10 +22,10 @@ def findSeat(place):
     i = 1
     while seatNum == -1:
         if getInfo.getSeatNum():  # 当前有位置
-            print(printLog.get_time(), "当前有位置,将退出座位寻找!")
+            print(printLog.get_time("findSeat"), "当前有位置,将退出座位寻找!")
             return
         seatNum = search.search(place)
-        print(printLog.get_time(), "当前循环次数：", i)
+        print(printLog.get_time("findSeat"), "当前循环次数：", i)
         i += 1
         if seatNum == -1:
             time.sleep(5)
@@ -44,11 +43,18 @@ def refresh(seatNum):
     # 短时间内预约失败，通知手机端，并结束程序
     i_refresh += 1
     newTime = time.time()
-    print(printLog.get_time(), "当前i:{}, 上次调用时间：{}，当前时间：{}，时间差：{}".format(i_refresh, newTime, oldTime, newTime - oldTime))
-    if newTime - oldTime < 120 and i_refresh > 5:
+
+    newTime_str = time.strftime("%H:%M:%S", time.localtime(newTime))
+    oldTime_str = time.strftime("%H:%M:%S", time.localtime(oldTime))
+    if oldTime == 0:
+        oldTime_str = "暂无"
+    print(printLog.get_time('refresh'),
+          "当前尝试预约次数:{}, 上次预约时间：[{}]，当前时间：[{}]，时间差：{}秒".format(i_refresh, oldTime_str, newTime_str, int(newTime - oldTime)))
+    if newTime - oldTime < 120 and i_refresh > 2:
         feedback.feedback("预约位置功能异常，请手动查看", wx=1)
-    elif newTime - oldTime > 120:
-        print(printLog.get_time(), "标记为已置零")
+        exit()
+    elif newTime - oldTime > 120 and oldTime != 0:
+        print(printLog.get_time('refresh'), "标记位已置零")
         i_refresh = 0
 
     # 当前有位置，但是预约失败，则通知手机
@@ -56,7 +62,7 @@ def refresh(seatNum):
     if getInfo.getSeatNum():
         flag = 1
     cancelRes = str(BespeakCancel_nomal.BespeakCancel())
-    print(printLog.get_time(), "取消结果:", str(cancelRes))
+    print(printLog.get_time('refresh'), "取消结果:", str(cancelRes))
     if flag and cancelRes.find("成功") == -1:
         feedback.feedback(seatNum + "取消预约失败，请手动查看")
         return
@@ -68,17 +74,19 @@ def refresh(seatNum):
             index = sub.getCookie().find("WeChatUserCenter=") + len("WeChatUserCenter") + 1
             studentNUm = sub.getCookie()[index:index + 10]
             location = str(CheckSeat.check(studentNUm))
-            feedback.feedback("已找到位置,位置:" + location)
-            print(printLog.get_time(), "已找到位置,位置:" + location)
+            feedback.feedback("已找到位置:" + location)
+            print(printLog.get_time('refresh'), "已找到位置,位置:" + location)
             F = 111
-    # 等待刷新
-
-    if getInfo.getSeatText():
-        for i in range(0, 130):
-            print(printLog.get_time(), '还剩{}分钟后刷新'.format(130 - i))
-            time.sleep(60)
 
     oldTime = time.time()
+
+    # 延迟刷新
+    if getInfo.getSeatNum():
+        for i in range(0, 130):
+            if i % 30 == 0:
+                print(printLog.get_time('refresh'), '还剩{}分钟后刷新'.format(130 - i))
+            time.sleep(60)
+    print("------------------------------------------------")
 
 
 # 是否在走廊

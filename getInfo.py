@@ -52,9 +52,9 @@ def getSeatText(i=1):
         if i == -1:
             return "{} [{}]号".format(seat[1], seat[0][-3:])
         elif i:
-            print(printLog.get_time(), "\033[1;40;46m已检测到预约信息；当前位置信息：[{}] [{}]号\033[0m".format(seat[1], seat[0][-3:]))
+            print(printLog.get_time('getSeat'), "\033[1;40;46m已检测到预约信息；当前位置信息：[{}] [{}]号\033[0m".format(seat[1], seat[0][-3:]))
         return seat[0]  # 位置代码
     else:
         if i:
-            print(printLog.get_time(), "\033[1;40;41m未检测到预约信息\033[0m")
+            print(printLog.get_time('getSeat'), "\033[1;40;41m未检测到预约信息\033[0m")
         return False
