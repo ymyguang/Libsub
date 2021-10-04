@@ -18,6 +18,8 @@ i_refresh = 0
 
 # 查找走廊可用位置
 def findSeat(place):
+    global F
+    F = None
     seatNum = -1
     i = 1
     while seatNum == -1:
@@ -50,7 +52,7 @@ def refresh(seatNum):
         oldTime_str = "暂无"
     print(printLog.get_time('refresh'),
           "当前尝试预约次数:{}, 上次预约时间：[{}]，当前时间：[{}]，时间差：{}秒".format(i_refresh, oldTime_str, newTime_str, int(newTime - oldTime)))
-    if newTime - oldTime < 120 and i_refresh > 2:
+    if newTime - oldTime < 120 and i_refresh > 3:
         feedback.feedback("预约位置功能异常，请手动查看", wx=1)
         exit()
     elif newTime - oldTime > 120 and oldTime != 0:
@@ -64,7 +66,7 @@ def refresh(seatNum):
     cancelRes = str(BespeakCancel_nomal.BespeakCancel())
     print(printLog.get_time('refresh'), "取消结果:", str(cancelRes))
     if flag and cancelRes.find("成功") == -1:
-        feedback.feedback(seatNum + "取消预约失败，请手动查看")
+        feedback.feedback(seatNum + "取消预约失败，请手动查看", wx=1)
         return
     sub.subscribe(seatNum)
 
@@ -81,7 +83,7 @@ def refresh(seatNum):
     oldTime = time.time()
 
     # 延迟刷新
-    if getInfo.getSeatNum():
+    if getInfo.getSeatText():
         for i in range(0, 130):
             if i % 30 == 0:
                 print(printLog.get_time('refresh'), '还剩{}分钟后刷新'.format(130 - i))

@@ -4,7 +4,7 @@ import requests
 
 def feedback(text, case='M', wx=0):
     print(printLog.get_time("Feedback"), "->【", text + ' 】')
-    # return
+    #return
     URL = "https://sctapi.ftqq.com/SCT33679Td3sATvBjES3VjKQeZgcsbxeB.send"
 
     if case == 'M':
