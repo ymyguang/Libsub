@@ -1,6 +1,7 @@
 # 查找带有电源的走廊位置
 import requests
 import random
+from tools import printLog
 
 # import Main
 
@@ -17,7 +18,7 @@ def seatInfo(seatNumber):
 
 def search(place):
     global seatNum
-    CORRIDOR = ['三楼走廊05', '四楼走廊08', '五楼走廊11', '六楼走廊14'] # 五楼走廊11
+    CORRIDOR = ['三楼走廊05', '四楼走廊08', '五楼走廊11', '六楼走廊14']  # 五楼走廊11
     Room = ['三楼北区04',
             '三楼南区03', '二楼北区02',
             '四楼南区06', '四楼北区07',
@@ -38,7 +39,11 @@ def search(place):
         seatNumArray = extra(tar, place)  # 当前楼层的可用位置,0全部位置，1位走廊位置
         if seatNumArray != -1:
             seatNum = seatNumArray[random.randrange(0, len(seatNumArray))]
-            break
+            if roomNumber == "101005" and seatNum[-3:] in ('065', '066', '067'):
+                print(printLog.get_time('find'), "扫描位置为{}-{}，该位置无电源，已跳过！".format(roomName, seatNum[-3:]))
+                seatNum = -1
+            else:
+                break
         else:
             seatNum = -1
     return seatNum
@@ -58,7 +63,7 @@ def extra(total, place):
             # 是否符合走廊条件
             if place == 1:
                 seat = int(splitStr[6][-3:])
-                if 46 <= seat <= 77 or 1 <= seat <= 38:
+                if 48 <= seat <= 77 or 1 <= seat <= 38:
                     l.append(str(splitStr[-1:][0]))  # 座位号
 
             # 是否满足阅览室条件

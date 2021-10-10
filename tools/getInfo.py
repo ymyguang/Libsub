@@ -1,8 +1,8 @@
 # 展示使用
 from tools import printLog
-import Cancel.BespeakCancel_nomal
 import requests
 from bs4 import BeautifulSoup
+from Sub import sub
 
 SITE = "http://tsgic.hebust.edu.cn/seat/MyCurBespeakSeat.aspx"
 
@@ -26,8 +26,14 @@ SITE = "http://tsgic.hebust.edu.cn/seat/MyCurBespeakSeat.aspx"
 
 
 # myInfo[0]全座位号，[1]文字座位信息
-def getSeatNum():
-    Headers = Cancel.BespeakCancel_nomal.HEADERS
+def getUserInfo(name):
+    index = sub.getCookie(name).find("WeChatUserCenter=") + len("WeChatUserCenter") + 1
+    studentNUm = sub.getCookie(name)[index:index + 10]
+    return studentNUm
+
+
+def getSeatNum(name):
+    Headers = sub.getHeader(name)
     myInfo = []
     requset = requests.post(SITE, headers=Headers)
     supe = BeautifulSoup(requset.text, "html.parser")
@@ -46,13 +52,14 @@ def getSeatNum():
 
 
 # 若有位置，则返回位置代码，若无位置则返回假
-def getSeatText(i=1):
-    seat = getSeatNum()
+def getSeatText(i=1, name=None):
+    seat = getSeatNum(name)
     if seat:
         if i == -1:
             return "{} [{}]号".format(seat[1], seat[0][-3:])
         elif i:
-            print(printLog.get_time('getSeat'), "\033[1;40;46m已检测到预约信息；当前位置信息：[{}] [{}]号\033[0m".format(seat[1], seat[0][-3:]))
+            print(printLog.get_time('getSeat'),
+                  "\033[1;40;46m已检测到预约信息；当前位置信息：[{}] [{}]号\033[0m".format(seat[1], seat[0][-3:]))
         return seat[0]  # 位置代码
     else:
         if i:

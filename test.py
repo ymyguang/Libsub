@@ -1,8 +1,15 @@
 import time
 
-timestamp = 1462451334
+from tools import fileExam
+
+i = 1
+def dsx():
+    while 1:
+        global i
+        print("当前i值:", i)
+        i = input()
+        time.sleep(1)
 
 
-dt = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(timestamp))
-
-print(dt)
+if __name__ == '__main__':
+    dsx()

@@ -1,6 +1,6 @@
 # 查找带有电源的走廊位置
 import requests
-import getInfo
+from tools import getInfo
 from Sub import sub
 
 ROOM = [1010120, 1010080, 1010110, 1010120]  # !1010140是走廊
@@ -32,7 +32,6 @@ def extra(total):
             # seat = int(splitstr[6][-3:])
             # if 46 <= seat <= 77 or 1 <= seat <= 38:
             l.append(str(splitstr[-1:][0]))  # 座位号
-
 
 def run():
     search()
