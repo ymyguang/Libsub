@@ -11,7 +11,7 @@ SITE = "http://tsgic.hebust.edu.cn/seat/FriendSeats/friendSeat.aspx?"
 
 def check(number):
     payload = {'friend_cardid': number}
-    r = requests.post(SITE, headers=sub.HEADERS, params=payload)  # 读取座位信息
+    r = requests.post(SITE, headers=sub.getHeader('zhou'), params=payload)  # 读取座位信息
     if r.status_code == 200:
         supe = BeautifulSoup(r.text, "html.parser")
         l = []
@@ -70,7 +70,7 @@ def test():
 
 
 if __name__ == '__main__':
-    #diy()
+    # diy()
     comment()
     # test()
     input()
