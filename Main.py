@@ -53,7 +53,7 @@ def refresh(seatNum):
           "当前尝试预约次数:{}, 上次预约时间：[{}]，当前时间：[{}]，时间差：{}秒".format(i_refresh, oldTime_str, newTime_str,
                                                               int(newTime - oldTime)))
     if newTime - oldTime < 120 and i_refresh > 3:
-        feedback.feedback("预约位置功能异常，请手动查看", wx=1)
+        feedback.feedback("预约位置功能异常，请手动查看")
         exit()
     elif newTime - oldTime > 120 and oldTime != 0:
         print(printLog.get_time('refresh'), "标记位已置零")
@@ -66,7 +66,7 @@ def refresh(seatNum):
     cancelRes = str(BespeakCancel_nomal.BespeakCancel(name))
     print(printLog.get_time('refresh'), "取消结果:", str(cancelRes))
     if flag and cancelRes.find("成功") == -1:
-        feedback.feedback(seatNum + "取消预约失败，请手动查看", wx=1)
+        feedback.feedback(seatNum + "取消预约失败，请手动查看")
         return
     sub.subscribe(seatNum, name)
 
