@@ -38,7 +38,14 @@ def search(place):
         tar = seatInfo(roomNumber)
         seatNumArray = extra(tar, place)  # 当前楼层的可用位置,0全部位置，1位走廊位置
         if seatNumArray != -1:
-            seatNum = seatNumArray[random.randrange(0, len(seatNumArray))]
+            seatNumArray.sort()
+            # 1是走廊
+            if place == 1:
+                seatNum = seatNumArray[-1]  # 返回最大的值（北区）
+            # 2是阅览室
+            elif place == 2:
+                seatNum = seatNumArray[int(len(seatNumArray) / 2)]  # 中间值
+
             if roomNumber == "101005" and seatNum[-3:] in ('065', '066', '067'):
                 print(printLog.get_time('find'), "扫描位置为{}-{}，该位置无电源，已跳过！".format(roomName, seatNum[-3:]))
                 seatNum = -1

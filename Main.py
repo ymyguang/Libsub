@@ -52,10 +52,10 @@ def refresh(seatNum):
     print(printLog.get_time('refresh'),
           "当前尝试预约次数:{}, 上次预约时间：[{}]，当前时间：[{}]，时间差：{}秒".format(i_refresh, oldTime_str, newTime_str,
                                                               int(newTime - oldTime)))
-    if newTime - oldTime < 120 and i_refresh > 3:
+    if newTime - oldTime < 128 and i_refresh > 16:
         feedback.feedback("预约位置功能异常，请手动查看")
         exit()
-    elif newTime - oldTime > 120 and oldTime != 0:
+    elif newTime - oldTime > 128 and oldTime != 0:
         print(printLog.get_time('refresh'), "标记位已置零")
         i_refresh = 0
 
