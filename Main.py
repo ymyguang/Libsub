@@ -22,14 +22,14 @@ def findSeat(place):
     i = 1
     while seatNum == -1:
         if getInfo.getSeatNum(name):  # 当前有位置
-            print(printLog.get_time("findSeat"), "当前有位置,将退出座位寻找!")
+            print(printLog.get_time("findSeat", name), "当前有位置,将退出座位寻找!")
             return
         seatNum = search.search(place)
-        print(printLog.get_time("findSeat"), "当前循环次数：", i)
+        print(printLog.get_time("findSeat", name), "当前循环次数：", i)
         i += 1
         if seatNum == -1:
             time.sleep(5)
-    print(printLog.get_time(), "找到位置可用位置!->座位代码:", seatNum)
+    print(printLog.get_time("findSeat", name), "找到位置可用位置!->座位代码:", seatNum)
     return seatNum
 
 
@@ -40,23 +40,32 @@ def refresh(seatNum):
     global name
     global i_refresh
     global oldTime
+    i = 1
+    while i < 5 and seatNum is None:
+        print("未获取到位置信息，当前尝试次数{}".format(i))
+        seatNum = getInfo.getSeatText(name=name)
+        i += 1
+        time.sleep(1)
 
+    if seatNum is None:
+        print(printLog.get_time(), "位置信息仍为空，退出预约")
+        return
     # 短时间内预约失败，通知手机端，并结束程序
     i_refresh += 1
     newTime = time.time()
-
+    print(printLog.get_time("refresh", name), "进入到预约功能", "当前捕获座位号：", seatNum)
     newTime_str = time.strftime("%H:%M:%S", time.localtime(newTime))
     oldTime_str = time.strftime("%H:%M:%S", time.localtime(oldTime))
     if oldTime == 0:
         oldTime_str = "暂无"
-    print(printLog.get_time('refresh'),
+    print(printLog.get_time('refresh', name),
           "当前尝试预约次数:{}, 上次预约时间：[{}]，当前时间：[{}]，时间差：{}秒".format(i_refresh, oldTime_str, newTime_str,
                                                               int(newTime - oldTime)))
     if newTime - oldTime < 128 and i_refresh > 16:
-        feedback.feedback("预约位置功能异常，请手动查看")
+        feedback.feedback("预约异常，请手动查看 --" + name)
         exit()
     elif newTime - oldTime > 128 and oldTime != 0:
-        print(printLog.get_time('refresh'), "标记位已置零")
+        print(printLog.get_time('refresh', name), "标记位已置零")
         i_refresh = 0
 
     # 当前有位置，但是预约失败，则通知手机
@@ -64,28 +73,32 @@ def refresh(seatNum):
     if getInfo.getSeatNum(name):
         flag = 1
     cancelRes = str(BespeakCancel_nomal.BespeakCancel(name))
-    print(printLog.get_time('refresh'), "取消结果:", str(cancelRes))
+    print(printLog.get_time('refresh', name), "取消结果:", str(cancelRes))
     if flag and cancelRes.find("成功") == -1:
-        feedback.feedback(seatNum + "取消预约失败，请手动查看")
+        feedback.feedback(seatNum + "取消失败，请手动查看 --" + name)
         return
-    sub.subscribe(seatNum, name)
+
+    print(printLog.get_time("refresh", name), "正在尝试预约目标位置：", seatNum)
+
+    print(printLog.get_time("refresh", name), "预约信息:", sub.subscribe(seatNum, name).text.split(";")[0])
 
     # 获取学号信息，并通知手机一次
     if F is None:
         if getInfo.getSeatNum(name):
             studentNUm = getInfo.getUserInfo(name)
             location = str(CheckSeat.check(studentNUm))
-            feedback.feedback("已找到位置:" + location)
-            print(printLog.get_time('refresh'), "已找到位置,位置:" + location)
+            feedback.feedback("已找到位置:" + location + "--" + name)
+            # print(printLog.get_time('refresh'), "已找到位置,位置:" + location)
             F = 111
 
     oldTime = time.time()
-
+    time.sleep(2)
     # 延迟刷新
     if getInfo.getSeatText(name=name):
+        # pass
         for i in range(0, 130):
             if i % 30 == 0:
-                print(printLog.get_time('refresh'), '还剩{}分钟后刷新'.format(130 - i))
+                print(printLog.get_time('refresh', name), '还剩{}分钟后刷新'.format(130 - i))
             time.sleep(60)
     print("------------------------------------------------")
 
@@ -137,6 +150,16 @@ def room():
     maintain(case=3, num=None)
 
 
+def all():
+    global name
+
+    seatNum = getInfo.getSeatText(name=name)
+    if seatNum:  # 有位置，但是未在走廊，取消当前位置，重新预约
+        Cancel()  # 保证取消成功
+    refresh(findSeat(3))  # 未找到位置
+    maintain(case=3, num=None)
+
+
 def maintain(case, num):
     global name
 
@@ -168,11 +191,13 @@ def menu(a):
     option = int(option_row)
     if option == 1:
         clearScreen.screen_clear()
-        num = input("1 -> corridor; 2 -> room\n")
+        num = input("1 -> corridor; 2 -> room; 3 -> above all\n")
         if int(num) == 1:
             corridor()
-        else:
+        elif int(num) == 2:
             room()
+        elif int(num) == 3:
+            all()
     elif option == 2:
         clearScreen.screen_clear()
         appointUI()
@@ -182,14 +207,14 @@ def menu(a):
     elif option == 4:
         global bl
         cancelResult = BespeakCancel_nomal.BespeakCancel(name)
-        print(printLog.get_time(), cancelResult)
+        print(printLog.get_time(name=name), cancelResult)
         if str(cancelResult).find("成功") == -1 and getInfo.getSeatNum(name):
             bl = input("Whether to forcibly cancel current seat?(yes/no)")
             if bl == "yes" or bl == 'y':
-                print(printLog.get_time(), "正在进行强制取消，请耐心等待")
+                print(printLog.get_time(name=name), "正在进行强制取消，请耐心等待")
                 for i in range(0, 10):
                     time.sleep(60)
-                    print(printLog.get_time(), BespeakCancel_nomal.BespeakCancel(name))
+                    print(printLog.get_time(name=name), BespeakCancel_nomal.BespeakCancel(name))
 
 
 def appointUI():

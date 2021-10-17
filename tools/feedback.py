@@ -24,20 +24,20 @@ def feedback(text, case='M'):
     # QQ推送
     url = "https://qmsg.zendee.cn/" + way[case] + "/d105a92ecd34dab1427db4dc4936e339"
     c = requests.get(url=url, params=params1)
-    print(printLog.get_time("feedback"), "推送目标QQ:{}".format(str(qq[case])))
+    # print(printLog.get_time("feedback"), "推送目标QQ:{}".format(str(qq[case])))
     status = c.json()['success']
-    print(printLog.get_time("feedback"), "QQ推送状态：{},详情：{}".format(c.json()['success'], c.json()['reason']))
+    # print(printLog.get_time("feedback"), "QQ推送状态：{},详情：{}".format(c.json()['success'], c.json()['reason']))
 
     # QQ推送失败
     if status is False:
 
         # coolPush推送
-        print(printLog.get_time("feedback"), "QQ推送失败，进入coolPush推送")
+        # print(printLog.get_time("feedback"), "QQ推送失败，进入coolPush推送")
         t = requests.post("https://push.xuthus.cc/ww/ce4e2dfe9a211ca36f718441f089a88c", data=text.encode("utf-8"))
         status = t.json()['message']
         flag = str(status).find("等待执行")
 
-        print(printLog.get_time("feedback"), "coolPush推送状态:", status[0:flag - 1])
+        # print(printLog.get_time("feedback"), "coolPush推送状态:", status[0:flag - 1])
 
         # 未找到：成功关键字 -》推送失败
         if flag == -1:

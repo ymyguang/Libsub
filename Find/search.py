@@ -22,11 +22,17 @@ def search(place):
             '四楼南区06', '四楼北区07',
             '五楼南区09', '五楼北区10', '六楼北区13']
 
+    All = ['三楼走廊05', '四楼走廊08', '五楼走廊11', '六楼走廊14', '三楼北区04',
+           '三楼南区03', '二楼北区02',
+           '四楼南区06', '四楼北区07',
+           '五楼南区09', '五楼北区10', '六楼北区13']
     # 1是走廊,2是阅览室
     # 默认是走廊
     targetPlace = CORRIDOR
     if place == 2:
         targetPlace = Room
+    elif place == 3:
+        targetPlace = All
 
     for i in targetPlace:
         print(i, end=" ")
@@ -38,19 +44,22 @@ def search(place):
         if seatNumArray != -1:
             seatNumArray.sort()
             # 1是走廊
-            if place == 1:
+            if place == 1 or place == 3:
                 hour = datetime.datetime.now().hour
                 # 上午预约南区
-                if hour >= 22 or hour < 12:
+                if hour >= 22 or hour < 9:
                     index = 0
                 else:
                     index = -1
                 seatNum = seatNumArray[index]  # 返回最大的值（北区）
             # 2是阅览室
-            elif place == 2:
+            elif place == 2 or place == 3:
                 seatNum = seatNumArray[int(len(seatNumArray) / 2)]  # 中间值
 
             if roomNumber == "101005" and seatNum[-3:] in ('065', '066', '067'):
+                print(printLog.get_time('find'), "扫描位置为{}-{}，该位置无电源，已跳过！".format(roomName, seatNum[-3:]))
+                seatNum = -1
+            if roomNumber == "101011" and seatNum[-3:] in ('022', ''):
                 print(printLog.get_time('find'), "扫描位置为{}-{}，该位置无电源，已跳过！".format(roomName, seatNum[-3:]))
                 seatNum = -1
             else:
