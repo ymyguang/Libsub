@@ -34,22 +34,12 @@ def findSeat(place):
 
 
 # 刷新预约时间
-# 方式:取消后等待130分钟返回,进入下一次维持循环
-def refresh(seatNum):
+# 方式:取消后等待130分钟返回,进入下一次维持循环，默认执行取消
+def refresh(seatNum, status=1):
     global F
     global name
     global i_refresh
     global oldTime
-    i = 1
-    while i < 5 and seatNum is None:
-        print("未获取到位置信息，当前尝试次数{}".format(i))
-        seatNum = getInfo.getSeatText(name=name)
-        i += 1
-        time.sleep(1)
-
-    if seatNum is None:
-        print(printLog.get_time(), "位置信息仍为空，退出预约")
-        return
     # 短时间内预约失败，通知手机端，并结束程序
     i_refresh += 1
     newTime = time.time()
@@ -68,15 +58,16 @@ def refresh(seatNum):
         print(printLog.get_time('refresh', name), "标记位已置零")
         i_refresh = 0
 
-    # 当前有位置，但是预约失败，则通知手机
-    flag = None
-    if getInfo.getSeatNum(name):
-        flag = 1
-    cancelRes = str(BespeakCancel_nomal.BespeakCancel(name))
-    print(printLog.get_time('refresh', name), "取消结果:", str(cancelRes))
-    if flag and cancelRes.find("成功") == -1:
-        feedback.feedback(seatNum + "取消失败，请手动查看 --" + name)
-        return
+    if status:
+        print(printLog.get_time(), "执行取消操作")
+        flag = None
+        if getInfo.getSeatNum(name):
+            flag = 1
+        cancelRes = str(BespeakCancel_nomal.BespeakCancel(name))
+        print(printLog.get_time('refresh', name), "取消结果:", str(cancelRes))
+        if flag and cancelRes.find("成功") == -1:
+            feedback.feedback(seatNum + "取消失败，请手动查看 --" + name)
+            return
 
     print(printLog.get_time("refresh", name), "正在尝试预约目标位置：", seatNum)
 
@@ -127,17 +118,28 @@ def Cancel():
 
 
 # 寻找走廊
-def corridor():
+# st -> status参数，只来源于主函数的信息状态
+def corridor(st):
     global name
-
+    flag = True
     while 1:
-        seatNum = getInfo.getSeatText(name=name)
-        if seatNum and isOk(seatNum[:-3]):  # 有位置，且在走廊，保持当前状态
-            refresh(seatNum)
+        if flag:  # 第一次直接采用来自main函数的位置查询信息，减少请求次数
+            print(printLog.get_time("corridor", name), st)
+            flag = False
+            if st:  # 位置不为空
+                CheckSeatNum = st[0]
+            else:  # 位置为空
+                CheckSeatNum = st
+
+        else:
+            CheckSeatNum = getInfo.getSeatText(name=name)
+
+        if CheckSeatNum and isOk(CheckSeatNum[:-3]):  # 有位置，且在走廊，保持当前状态
+            refresh(CheckSeatNum)  # 默认执行取消
             continue
-        elif seatNum:  # 有位置，但是未在走廊，取消当前位置，重新预约
+        elif CheckSeatNum:  # 有位置，但是未在走廊，取消当前位置，重新预约
             Cancel()  # 保证取消成功
-        refresh(findSeat(1))  # 未找到位置
+        refresh(findSeat(1))
 
 
 def room():
@@ -180,7 +182,8 @@ def menu(a):
     currentSeat = getInfo.getSeatNum(name)
     if a == "auto":
         print(printLog, "进入自动寻找模式")
-        corridor()
+        refresh(findSeat(1), False)  # 直接进入寻找位置，跳过取消
+        corridor(getInfo.getSeatNum(name))
     print("You current seat information：", currentSeat)
 
     option_row = input("Please select state:  \n"
@@ -193,7 +196,7 @@ def menu(a):
         clearScreen.screen_clear()
         num = input("1 -> corridor; 2 -> room; 3 -> above all\n")
         if int(num) == 1:
-            corridor()
+            corridor(currentSeat)
         elif int(num) == 2:
             room()
         elif int(num) == 3:
