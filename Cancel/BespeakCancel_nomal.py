@@ -1,5 +1,8 @@
 import requests
+import sys
 import re
+
+sys.path.append('..')
 from Sub import sub
 
 URL = "https://sc.ftqq.com/SCU130108Ta4c5f2a9e57c45b7f7224242b46ae1585fbfa4b860f6c.send"

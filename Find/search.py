@@ -48,7 +48,7 @@ def search(place):
             if place == 1:
                 hour = datetime.datetime.now().hour
                 # 上午预约南区
-                if hour >= 22 or hour < 12:
+                if hour >= 22 or hour < 10:
                     index = 0
                 else:
                     index = -1
