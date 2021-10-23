@@ -43,8 +43,10 @@ def search(place):
         seatNumArray = extra(tar, place)  # 当前楼层的可用位置,0全部位置，1位走廊位置
         if seatNumArray != -1:
             seatNumArray.sort()
-            index = int(len(seatNumArray) * 0.64)
+            print(printLog.get_time("search"), "全部有效位置：", seatNumArray)
+            index = int(len(seatNumArray) * 0.74)
             seatNum = seatNumArray[index]  # 靠后位置
+            print(printLog.get_time(), "选中位置{}，位置号：{}".format(index, seatNum))
             if roomNumber == "101005" and seatNum[-3:] in ('065', '066', '067'):
                 print(printLog.get_time('find'), "扫描位置为{}-{}，该位置无电源，已跳过！".format(roomName, seatNum[-3:]))
                 seatNum = -1
