@@ -1,3 +1,4 @@
+import random
 import sys
 import time
 from Cancel import BespeakCancel_nomal
@@ -12,6 +13,8 @@ F = None
 oldTime = 0
 i_refresh = 0
 name = 'zhou'
+# 到馆时间
+refresh_time = random.randrange(70, 80)
 
 
 # 查找走廊可用位置
@@ -87,9 +90,9 @@ def refresh(seatNum, status=1):
     # 延迟刷新
     if getInfo.getSeatText(name=name):
         # pass
-        for i in range(0, 130):
+        for i in range(0, refresh_time):
             if i % 30 == 0:
-                print(printLog.get_time('refresh', name), '还剩{}分钟后刷新'.format(130 - i))
+                print(printLog.get_time('refresh', name), '还剩{}分钟后刷新'.format(refresh_time - i))
             time.sleep(60)
     print("------------------------------------------------")
 
