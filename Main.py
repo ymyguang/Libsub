@@ -54,7 +54,7 @@ def refresh(seatNum, status=1):
     print(printLog.get_time('refresh', name),
           "当前尝试预约次数:{}, 上次预约时间：[{}]，当前时间：[{}]，时间差：{}秒".format(i_refresh, oldTime_str, newTime_str,
                                                               int(newTime - oldTime)))
-    if newTime - oldTime < 128 and i_refresh > 32:
+    if newTime - oldTime < 128 and i_refresh > 128:
         feedback.feedback("预约异常，请手动查看 --" + name)
         exit()
     elif newTime - oldTime > 128 and oldTime != 0:
@@ -185,6 +185,7 @@ def menu(a):
     currentSeat = getInfo.getSeatNum(name)
     if a == "auto":
         print(printLog, "进入自动寻找模式")
+        time.sleep(50)
         refresh(findSeat(1), False)  # 直接进入寻找位置，跳过取消
         corridor(getInfo.getSeatNum(name))
     print("You current seat information：", currentSeat)
@@ -264,5 +265,5 @@ if __name__ == '__main__':
     # 预处理文件
     in_cookie = input(printLog.get_time() + "当前Cookie默认值为:[{}],是否更换？（y/n）".format(name))
     if in_cookie == 'y':
-        name = input("The current cookie is {my,yang}")
+        name = input("The current cookie is {my,yang,gao}")
     menu(a)

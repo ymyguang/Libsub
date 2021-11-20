@@ -2,5 +2,5 @@ import random
 
 l = []
 
-a = random.randrange(1,10)
-print(a)
+for i in range(1891103100, 1891103150):
+    print("{},雨晴{}".format(i, str(i)[-2:]))

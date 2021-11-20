@@ -4,10 +4,8 @@ import requests
 from bs4 import BeautifulSoup
 from Sub import sub
 from tools import printLog
-import Main
 
 SITE = "http://tsgic.hebust.edu.cn/seat/FriendSeats/friendSeat.aspx?"
-
 
 def check(number):
     payload = {'friend_cardid': number}
