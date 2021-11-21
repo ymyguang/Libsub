@@ -19,6 +19,7 @@ refresh_time = random.randrange(70, 80)
 
 # 查找走廊可用位置
 def findSeat(place):
+    print(printLog.get_time(), "正在搜索")
     global F
     F = None
     seatNum = -1

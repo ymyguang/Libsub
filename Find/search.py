@@ -35,7 +35,7 @@ def search(place):
         targetPlace = All
 
     for i in targetPlace:
-        print(i, end=" ")
+        # print(i, end=" ")
         roomNumber = "1010" + i[-2:]
         roomName = i[0:4]
         # print("[INFO]正在扫描:" + roomName + ":" + str(roomNumber))
