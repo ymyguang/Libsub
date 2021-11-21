@@ -38,7 +38,7 @@ def search(place):
         print(i, end=" ")
         roomNumber = "1010" + i[-2:]
         roomName = i[0:4]
-        print("[INFO]正在扫描:" + roomName + ":" + str(roomNumber))
+        # print("[INFO]正在扫描:" + roomName + ":" + str(roomNumber))
         tar = seatInfo(roomNumber)
         seatNumArray = extra(tar, place)  # 当前楼层的可用位置,0全部位置，1位走廊位置
         if seatNumArray != -1:

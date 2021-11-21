@@ -28,7 +28,7 @@ def findSeat(place):
             print(printLog.get_time("findSeat", name), "当前有位置,将退出座位寻找!")
             return
         seatNum = search.search(place)
-        print(printLog.get_time("findSeat", name), "当前循环次数：", i)
+        # print(printLog.get_time("findSeat", name), "当前循环次数：", i)
         i += 1
         if seatNum == -1:
             time.sleep(5)
