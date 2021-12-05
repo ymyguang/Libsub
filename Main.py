@@ -1,10 +1,12 @@
 import random
 import sys
 import time
+from datetime import datetime
+
 from Cancel import BespeakCancel_nomal
 from Find import search
 from Sub import sub
-from tools import printLog, getInfo, fileExam
+from tools import printLog, getInfo
 from tools import feedback
 from tools import clearScreen
 import CheckSeat
@@ -14,13 +16,16 @@ oldTime = 0
 i_refresh = 0
 name = 'zhou'
 # 到馆时间
-refresh_time = random.randrange(70, 80)
-
+refresh_time = random.randrange(40, 55)
 
 # 查找走廊可用位置
 def findSeat(place):
     print(printLog.get_time(), "正在搜索")
     global F
+    global i_refresh
+    # 开始查找位置后，预约次数清零
+    i_refresh = 0
+
     F = None
     seatNum = -1
     i = 1
@@ -33,7 +38,7 @@ def findSeat(place):
         i += 1
         if seatNum == -1:
             time.sleep(5)
-    print(printLog.get_time("findSeat", name), "找到位置可用位置!->座位代码:", seatNum)
+    # print(printLog.get_time("findSeat", name), "找到位置可用位置!->座位代码:", seatNum)
     return seatNum
 
 
@@ -47,7 +52,7 @@ def refresh(seatNum, status=1):
     # 短时间内预约失败，通知手机端，并结束程序
     i_refresh += 1
     newTime = time.time()
-    print(printLog.get_time("refresh", name), "进入到预约功能", "当前捕获座位号：", seatNum)
+    # print(printLog.get_time("refresh", name), "进入到预约功能", "当前捕获座位号：", seatNum)
     newTime_str = time.strftime("%H:%M:%S", time.localtime(newTime))
     oldTime_str = time.strftime("%H:%M:%S", time.localtime(oldTime))
     if oldTime == 0:
@@ -62,8 +67,14 @@ def refresh(seatNum, status=1):
         print(printLog.get_time('refresh', name), "标记位已置零")
         i_refresh = 0
 
-    if status:
-        print(printLog.get_time(), "执行取消操作")
+    now = datetime.now()
+    hour = int(now.strftime("%H"))
+
+    # 在有效时间内，取消位置，否者直接跳过
+    # 在每天晚上的预约中，由于并发量较大，导致取消时，直接就卡死；同时在闭关期间，不需要一直取消；
+    # 7:00 - 21:59 执行取消操作
+    if 7 <= hour <= 21:
+        print(printLog.get_time(), "取消功能位置生效","执行取消操作")
         flag = None
         if getInfo.getSeatNum(name):
             flag = 1

@@ -20,7 +20,7 @@ def BespeakCancel(name):
 
 # 批量取消
 if __name__ == '__main__':
-    l = ['zhou', 'yang']
+    l = ['zhou', 'yang', 'gao']
     for i in l:
         print("当前取消用户：{}".format(i))
         print(BespeakCancel(i))
