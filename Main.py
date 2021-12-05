@@ -22,10 +22,6 @@ refresh_time = random.randrange(40, 55)
 def findSeat(place):
     print(printLog.get_time(), "正在搜索")
     global F
-    global i_refresh
-    # 开始查找位置后，预约次数清零
-    i_refresh = 0
-
     F = None
     seatNum = -1
     i = 1
