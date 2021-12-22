@@ -3,6 +3,7 @@ from tools import printLog
 import requests
 from bs4 import BeautifulSoup
 from Sub import sub
+from tools import feedback
 
 SITE = "http://tsgic.hebust.edu.cn/seat/MyCurBespeakSeat.aspx"
 
@@ -35,8 +36,13 @@ def getUserInfo(name):
 def getSeatNum(name):
     Headers = sub.getHeader(name)
     myInfo = []
-    requset = requests.post(SITE, headers=Headers)
-    supe = BeautifulSoup(requset.text, "html.parser")
+    try:
+        requset = requests.post(SITE, headers=Headers)
+        supe = BeautifulSoup(requset.text, "html.parser")
+    except Exception as e:
+        print(e)
+        feedback.feedback("getSeatNum-产生异常：" + str(e))
+
     num = 0
 
     for i in supe.find_all("input"):

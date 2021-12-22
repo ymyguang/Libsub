@@ -1,7 +1,7 @@
 import requests
 import sys
 import re
-
+from tools import feedback
 sys.path.append('/root/Libsub/')
 from Sub import sub
 
@@ -10,13 +10,16 @@ SITE = "http://tsgic.hebust.edu.cn/seat/BespeakCancel.aspx"
 
 
 def BespeakCancel(name):
-    result = re.findall(r"title:\"(.+?)\"", requests.get(SITE, headers=sub.getHeader(name)).text)[0]
-    cause = re.findall(r"text:\"(.+?)\"", requests.get(SITE, headers=sub.getHeader(name)).text)[0]
-    if str(result).find("成功") != -1:
-        return result
-    else:
-        return result + "错误原因:" + cause
-
+    try:
+        result = re.findall(r"title:\"(.+?)\"", requests.get(SITE, headers=sub.getHeader(name)).text)[0]
+        cause = re.findall(r"text:\"(.+?)\"", requests.get(SITE, headers=sub.getHeader(name)).text)[0]
+        if str(result).find("成功") != -1:
+            return result
+        else:
+            return result + "错误原因:" + cause
+    except Exception as e:
+        print(e, "---BespeakCancel")
+        feedback.feedback("BespeakCancel--产生异常"+ str(e))
 
 # 批量取消
 if __name__ == '__main__':

@@ -68,8 +68,8 @@ def refresh(seatNum, status=1):
 
     # 在有效时间内，取消位置，否者直接跳过
     # 在每天晚上的预约中，由于并发量较大，导致取消时，直接就卡死；同时在闭关期间，不需要一直取消；
-    # 7:00 - 21:59 执行取消操作
-    if 7 <= hour <= 21:
+    # 8:00 - 21:59 执行取消操作
+    if 8 <= hour <= 21:
         print(printLog.get_time(), "取消功能位置生效","执行取消操作")
         flag = None
         if getInfo.getSeatNum(name):
