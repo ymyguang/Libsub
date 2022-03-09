@@ -18,7 +18,10 @@ HEADERS = {
 
 def state(number):
     payload = {'friend_cardid': number}
-    r = requests.get(SITE, headers=sub.HEADERS, params=payload)  # 读取座位信息
+    try:
+        r = requests.get(SITE, headers=sub.HEADERS, params=payload)  # 读取座位信息
+    except Exception as e:
+        print(e)
     if r.status_code == 200:
         supe = BeautifulSoup(r.text, "html.parser")
         l = []

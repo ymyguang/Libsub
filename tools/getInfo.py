@@ -1,4 +1,6 @@
 # 展示使用
+import time
+
 from tools import printLog
 import requests
 from bs4 import BeautifulSoup
@@ -36,15 +38,23 @@ def getUserInfo(name):
 def getSeatNum(name):
     Headers = sub.getHeader(name)
     myInfo = []
-    try:
-        requset = requests.post(SITE, headers=Headers)
-        supe = BeautifulSoup(requset.text, "html.parser")
-    except Exception as e:
-        print(e)
-        feedback.feedback("getSeatNum-产生异常：" + str(e))
+    r = 0
+    # 网络超时情况下重试
+    while r < 10:
+        try:
+            if r > 5:
+                feedback.feedback("getSeatNum-产生异常：" + str(e) + "\n当前正在重试！【getSeatNum】")
+            requset = requests.post(SITE, headers=Headers)
+            supe = BeautifulSoup(requset.text, "html.parser")
+            r = 1000
+        except Exception as e:
+            print(e)
+            r += 1
+            time.sleep(60)
+            if r == 10:
+                feedback.feedback("始终产生异常，程序退出【getSeatNum】")
 
     num = 0
-
     for i in supe.find_all("input"):
         num += 1
         if num == 7 or num == 9:

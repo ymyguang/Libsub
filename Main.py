@@ -16,7 +16,7 @@ oldTime = 0
 i_refresh = 0
 name = 'zhou'
 # 到馆时间
-refresh_time = random.randrange(40, 55)
+refresh_time = random.randrange(40, 45)
 
 # 查找走廊可用位置
 def findSeat(place):
