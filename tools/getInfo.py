@@ -42,8 +42,6 @@ def getSeatNum(name):
     # 网络超时情况下重试
     while r < 10:
         try:
-            if r > 5:
-                feedback.feedback("getSeatNum-产生异常：" + str(e) + "\n当前正在重试！【getSeatNum】")
             requset = requests.post(SITE, headers=Headers)
             supe = BeautifulSoup(requset.text, "html.parser")
             r = 1000
@@ -53,6 +51,8 @@ def getSeatNum(name):
             time.sleep(60)
             if r == 10:
                 feedback.feedback("始终产生异常，程序退出【getSeatNum】")
+            else:
+                feedback.feedback("getSeatNum-产生异常：" + str(e) + "\n当前正在重试！【getSeatNum】")
 
     num = 0
     for i in supe.find_all("input"):

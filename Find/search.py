@@ -3,6 +3,10 @@ import datetime
 import requests
 from tools import printLog
 from tools import feedback
+import profile
+
+likeSeat = profile.linkSeat   # 六楼走廊，16号
+
 SITE = "http://tsgic.hebust.edu.cn/ajaxpro/WechatTSG.Web.Seat.BespeakSeat.BespeakSeatList,WechatTSG.Web.ashx"
 HEADERS = {'Cookie': '', 'X-AjaxPro-Method': 'ShowAllSeats',
            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69',
@@ -19,7 +23,6 @@ def seatInfo(seatNumber):
         feedback.feedback(s)
 
 
-
 def search(place):
     global seatNum
     CORRIDOR = ['三楼走廊05', '四楼走廊08', '五楼走廊11', '六楼走廊14']  # 五楼走廊11
@@ -32,6 +35,9 @@ def search(place):
            '三楼南区03', '二楼北区02',
            '四楼南区06', '四楼北区07',
            '五楼南区09', '五楼北区10', '六楼北区13']
+
+    print(printLog.get_time(), "偏好位置：{}".format(likeSeat))
+
     # 1是走廊,2是阅览室
     # 默认是走廊
     targetPlace = CORRIDOR
@@ -50,8 +56,16 @@ def search(place):
         if seatNumArray != -1:
             seatNumArray.sort()
             print(printLog.get_time("search"), "全部有效位置：", seatNumArray)
-            index = int(len(seatNumArray) * 0.1)
-            seatNum = seatNumArray[index]  # 靠后位置
+
+            # 指定偏好位置
+            if likeSeat in seatNumArray:
+                seatNum = likeSeat
+                index = -1
+            else:
+                print(printLog.get_time(), "偏好位置：{}未找到".format(likeSeat))
+                index = int(len(seatNumArray) * 0.1)
+                seatNum = seatNumArray[index]  # 靠后位置
+
             print(printLog.get_time(), "选中位置:{}，位置号：{}".format(index, seatNum))
             if roomNumber == "101005" and seatNum[-3:] in ('065', '066', '067'):
                 print(printLog.get_time('find'), "扫描位置为{}-{}，该位置无电源，已跳过！".format(roomName, seatNum[-3:]))

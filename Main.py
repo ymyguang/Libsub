@@ -10,13 +10,13 @@ from tools import printLog, getInfo
 from tools import feedback
 from tools import clearScreen
 import CheckSeat
-
+import profile
 F = None
 oldTime = 0
 i_refresh = 0
-name = 'zhou'
+name = profile.hostMan
 # 到馆时间
-refresh_time = random.randrange(40, 45)
+refresh_time = random.randrange(profile.refresh_time[0], profile.refresh_time[1])
 
 # 查找走廊可用位置
 def findSeat(place):
@@ -273,5 +273,6 @@ if __name__ == '__main__':
     # 预处理文件
     in_cookie = input(printLog.get_time() + "当前Cookie默认值为:[{}],是否更换？（y/n）".format(name))
     if in_cookie == 'y':
-        name = input("The current cookie is {my,yang,gao}")
+        nameSet = sub.cookieDic.keys()
+        name = input("This is available cookie {}".format(nameSet))
     menu(a)
