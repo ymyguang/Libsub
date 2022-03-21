@@ -4,7 +4,7 @@ IP = "http://47.94.166.83:5700"
 
 
 def myPush(text, qq, case):
-    qq = 588195769
+    qq = 1011088119
     s = text.replace(" @at=", "[CQ:at,qq=").replace("@", "]")
     url = IP + "/send_group_msg?group_id=" + str(qq) + "&message=" + str(s)
     try:
@@ -67,7 +67,7 @@ def feedback(text, case='M', qq=0):
     text = str(text)
     print("->【", text + ' 】')
     flag = False
-    qq = 588195769
+    qq = 1011088119
 
     # return
     if qq != 0:

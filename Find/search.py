@@ -5,7 +5,7 @@ from tools import printLog
 from tools import feedback
 import profile
 
-likeSeat = profile.linkSeat   # 六楼走廊，16号
+likeSeat = profile.linkSeat  # 六楼走廊，16号
 
 SITE = "http://tsgic.hebust.edu.cn/ajaxpro/WechatTSG.Web.Seat.BespeakSeat.BespeakSeatList,WechatTSG.Web.ashx"
 HEADERS = {'Cookie': '', 'X-AjaxPro-Method': 'ShowAllSeats',
@@ -25,7 +25,8 @@ def seatInfo(seatNumber):
 
 def search(place):
     global seatNum
-    CORRIDOR = ['三楼走廊05', '四楼走廊08', '五楼走廊11', '六楼走廊14']  # 五楼走廊11
+    CORRIDOR = ['六楼走廊14', '五楼走廊11', '四楼走廊08', '三楼走廊05']  # 五楼走廊11
+
     Room = ['三楼北区04',
             '三楼南区03', '二楼北区02',
             '四楼南区06', '四楼北区07',
