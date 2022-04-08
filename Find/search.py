@@ -37,7 +37,7 @@ def search(place):
            '四楼南区06', '四楼北区07',
            '五楼南区09', '五楼北区10', '六楼北区13']
 
-    print(printLog.get_time(), "偏好位置：{}".format(likeSeat))
+    # print(printLog.get_time(), "偏好位置：{}".format(likeSeat))
 
     # 1是走廊,2是阅览室
     # 默认是走廊

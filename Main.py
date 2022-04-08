@@ -198,13 +198,17 @@ def menu(a):
     if a == "auto":
         print(printLog, "进入自动寻找模式")
         time.sleep(50)
-        con = sub.subscribe(like, name)
-        while '已被预约' not in con:
-            con = sub.subscribe(like, name)
-            if '已预约了' in con:  # 预约成功
-                break
-        else:  # 位置不存在，则进行查找
-            refresh(findSeat(1), False)  # 直接进入寻找位置，跳过取消
+        con = sub.subscribe(like, name).text
+        print(con)
+        if '已预约了' not in con:
+            while '已被预约' not in con:
+                con = sub.subscribe(like, name).text
+                if '已预约了' in con:  # 预约成功
+                    break
+            else:  # 位置被约，且当前没位置
+                refresh(findSeat(1), False)  # 直接进入寻找位置，跳过取消
+        else:
+            print("当前存在位置")
         corridor(getInfo.getSeatNum(name))
     print("You current seat information：", currentSeat)
 
