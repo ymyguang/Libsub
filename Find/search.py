@@ -58,14 +58,8 @@ def search(place):
             seatNumArray.sort()
             print(printLog.get_time("search"), "全部有效位置：", seatNumArray)
 
-            # 指定偏好位置
-            if likeSeat in seatNumArray:
-                seatNum = likeSeat
-                index = -1
-            else:
-                print(printLog.get_time(), "偏好位置：{}未找到".format(likeSeat))
-                index = int(len(seatNumArray) * 0.1)
-                seatNum = seatNumArray[index]  # 靠后位置
+            index = int(len(seatNumArray) * 0.1)
+            seatNum = seatNumArray[index]  # 靠后位置
 
             print(printLog.get_time(), "选中位置:{}，位置号：{}".format(index, seatNum))
             if roomNumber == "101005" and seatNum[-3:] in ('065', '066', '067'):

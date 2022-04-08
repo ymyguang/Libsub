@@ -11,12 +11,15 @@ from tools import feedback
 from tools import clearScreen
 import CheckSeat
 import profile
+
 F = None
 oldTime = 0
 i_refresh = 0
 name = profile.hostMan
+like = profile.linkSeat
 # 到馆时间
 refresh_time = random.randrange(profile.refresh_time[0], profile.refresh_time[1])
+
 
 # 查找走廊可用位置
 def findSeat(place):
@@ -70,7 +73,7 @@ def refresh(seatNum, status=1):
     # 在每天晚上的预约中，由于并发量较大，导致取消时，直接就卡死；同时在闭关期间，不需要一直取消；
     # 8:00 - 21:59 执行取消操作
     if 8 <= hour <= 21:
-        print(printLog.get_time(), "取消功能位置生效","执行取消操作")
+        print(printLog.get_time(), "取消功能位置生效", "执行取消操作")
         flag = None
         if getInfo.getSeatNum(name):
             flag = 1
@@ -81,17 +84,18 @@ def refresh(seatNum, status=1):
             return
 
     print(printLog.get_time("refresh", name), "正在尝试预约目标位置：", seatNum)
+    info = sub.subscribe(seatNum, name).text
+    print(printLog.get_time("refresh", name), "预约信息:", info.split(";")[0])
 
-    print(printLog.get_time("refresh", name), "预约信息:", sub.subscribe(seatNum, name).text.split(";")[0])
-
-    # 获取学号信息，并通知手机一次
+    # 获取学号信息，并通知手机一次;找打位置则刷新，未找到则返回
     if F is None:
         if getInfo.getSeatNum(name):
             studentNUm = getInfo.getUserInfo(name)
             location = str(CheckSeat.check(studentNUm))
             feedback.feedback("已找到位置:" + location + "--" + name)
-            # print(printLog.get_time('refresh'), "已找到位置,位置:" + location)
             F = 111
+        else:
+            return -1  # 未约到
 
     oldTime = time.time()
     time.sleep(2)
@@ -194,7 +198,13 @@ def menu(a):
     if a == "auto":
         print(printLog, "进入自动寻找模式")
         time.sleep(50)
-        refresh(findSeat(1), False)  # 直接进入寻找位置，跳过取消
+        con = sub.subscribe(like, name)
+        while '已被预约' not in con:
+            con = sub.subscribe(like, name)
+            if '已预约了' in con:  # 预约成功
+                break
+        else:  # 位置不存在，则进行查找
+            refresh(findSeat(1), False)  # 直接进入寻找位置，跳过取消
         corridor(getInfo.getSeatNum(name))
     print("You current seat information：", currentSeat)
 
