@@ -1,7 +1,6 @@
 # Main account
-hostMan = "tao"
+hostMan = "yang"
 # Preference seat
-linkSeat = "101014016"
+linkSeat = "101008011"
 # Refresh time
-refresh_time = [40,45]
-
+refresh_time = [40, 50]

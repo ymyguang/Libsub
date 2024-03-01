@@ -65,6 +65,7 @@ def weChatPush(text, e):
 
 def feedback(text, case='M', qq=0):
     text = str(text)
+    return
     print("->【", text + ' 】')
     flag = False
     qq = 1011088119

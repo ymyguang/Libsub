@@ -1,6 +1,4 @@
-import random
+from Sub import sub
 
-l = []
-
-for i in range(1891103100, 1891103150):
-    print("{},雨晴{}".format(i, str(i)[-2:]))
+r = sub.subscribe(101012011, "zhou").text
+print(r)

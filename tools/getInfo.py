@@ -1,4 +1,5 @@
-# 展示使用
+# 展示使用g=utf-8
+#! codin
 import time
 
 from tools import printLog
@@ -33,7 +34,6 @@ def getUserInfo(name):
     index = sub.getCookie(name).find("WeChatUserCenter=") + len("WeChatUserCenter") + 1
     studentNUm = sub.getCookie(name)[index:index + 10]
     return studentNUm
-
 
 def getSeatNum(name):
     Headers = sub.getHeader(name)

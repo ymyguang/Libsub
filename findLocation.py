@@ -4,7 +4,7 @@ from tools import printLog, feedback
 
 people = {
     '陶雨晴': 1891103126,
-    'my': 1990752135
+    'my': "19L0752135"
 }
 keys = list(people.keys())
 
@@ -66,4 +66,4 @@ def Find(name):
 
 if __name__ == '__main__':
     # diy()
-    Find('陶雨晴')
+    Find('my')
